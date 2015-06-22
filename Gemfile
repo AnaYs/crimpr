@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -26,6 +27,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'simple_form'
+
+#Geocoder
+gem "geocoder"
+
+#Google Maps Gem
+gem "gmaps4rails"
+gem "rails-assets-underscore"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
