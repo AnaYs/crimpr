@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622121702) do
+ActiveRecord::Schema.define(version: 20150622123143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20150622121702) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "sector_id"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pictures", ["area_id"], name: "index_pictures_on_area_id", using: :btree
+  add_index "pictures", ["sector_id"], name: "index_pictures_on_sector_id", using: :btree
 
   create_table "sectors", force: :cascade do |t|
     t.integer  "area_id"
@@ -36,5 +46,7 @@ ActiveRecord::Schema.define(version: 20150622121702) do
 
   add_index "sectors", ["area_id"], name: "index_sectors_on_area_id", using: :btree
 
+  add_foreign_key "pictures", "areas"
+  add_foreign_key "pictures", "sectors"
   add_foreign_key "sectors", "areas"
 end

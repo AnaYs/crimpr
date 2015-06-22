@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'sector/index'
+
+  get 'sector/show'
+
+  get 'areas/index'
+
+  get 'areas/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
