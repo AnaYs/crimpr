@@ -1,31 +1,26 @@
 /* -------------------------------------
  * Colors & Fonts
  * ------------------------------------- */
-$navbar-color: $gray-light;
-$navbar-hover-color: $yellow;
-$navbar-font-family: $navbar-font;
-$navbar-font-size: 14px;
-$navbar-text-transform: capitalize;
-$navbar-font-weight: 300;
-$navbar-letter-spacing: 1.5px;
-$navbar-font-family: $navbar-font;
-$navbar-bg: white;
+$navbar-color: #F3843E;
+$navbar-hover-color: #656845;
+$navbar-font-family: $header-font;
+$navbar-bg: #393939;
 
 /* -------------------------------------
  * Box model
  * ------------------------------------- */
 $navbar-height: 50px;
-$navbar-vertical-padding: 10px;
+$navbar-vertical-padding: 5px;
 $navbar-horizontal-padding: 20px;
-$navbar-border-bottom-width: 1px;
-$navbar-border-bottom-color: $gray-lighter;
+$navbar-border-bottom-width: 0;
+$navbar-border-bottom-color: grey;
 
 /* -------------------------------------
  * Navbar button
  * ------------------------------------- */
 $navbar-btn-height: 40px;
-$navbar-btn-bg: lightgrey;
-$navbar-btn-color: white;
+$navbar-btn-bg: #6E6E6E;
+$navbar-btn-color: #FF9900;
 $navbar-btn-horizontal-padding: 10px;
 $navbar-btn-radius: 2px;
 
@@ -33,7 +28,7 @@ $navbar-btn-radius: 2px;
  * Navbar profile picture
  * ------------------------------------- */
 $navbar-profile-radius: 50%;
-$navbar-profile-border-color: white;
+$navbar-profile-border-color: #FF9900;
 $navbar-profile-border-width: 2px;
 
 /* -------------------------------------
@@ -43,10 +38,7 @@ $navbar-profile-border-width: 2px;
   background: $navbar-bg;
   font-family: $navbar-font-family;
   border: none;
-  font-size: $navbar-font-size;
-  text-transform: $navbar-text-transform;
-  font-weight: $navbar-font-weight;
-  letter-spacing: $navbar-letter-spacing;
+  font-weight: 400;
   padding-left: $navbar-horizontal-padding;
   padding-right: $navbar-horizontal-padding;
   border-bottom: $navbar-border-bottom-width solid $navbar-border-bottom-color;
@@ -95,13 +87,13 @@ $navbar-profile-border-width: 2px;
   }
 
   .navbar-brand img, .navbar-brand svg {
-    height: $navbar-height;
+    height: 50px;
     padding: 0px;
   }
 
   .img-avatar{
-    border: $navbar-profile-border-width solid $navbar-profile-border-color;
-    box-shadow: 0 0 2px rgb(200, 200, 200);
+    // border: $navbar-profile-border-width solid $navbar-profile-border-color;
+    // box-shadow: 0 0 2px #F3843E;
     height: $navbar-height - (2 * $navbar-profile-border-width);
     margin-right: 10px;
     border-radius: $navbar-profile-radius;
