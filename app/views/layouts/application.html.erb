@@ -9,9 +9,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 </head>
 <body>
+<%= render "shared/navbar" %>
+
 
 <%= yield %>
 
+<<<<<<< HEAD
   <%= javascript_include_tag "https://maps.google.com/maps/api/js?sensor=false" %>
   <%= javascript_include_tag "https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js" %>
 
@@ -19,5 +22,10 @@
 
   <%= yield(:after_js) %>
 
+=======
+
+
+<%= render "shared/footer" %>
+>>>>>>> 5596f25c9a9d30f3bea20bffe96635e7972feb0b
 </body>
 </html>
