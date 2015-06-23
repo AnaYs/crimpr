@@ -5,8 +5,10 @@ class AreasController < ApplicationController
       marker.lat area.latitude
       marker.lng area.longitude
     end
+
   end
 
   def show
+    @area = Area.find(params[:id])
   end
 end

@@ -2,6 +2,19 @@
 
 <div class="row">
 
+  <div class="col-xs-12 col-md-6 pull-left">
+  <div id="list" style="width: 100%; height: 600px;">
+    <p>
+    This is a list and below I'm testing the list
+      <ul>
+        <% @areas.each do |area| %>
+          <a href= "<%= area_path(area) %>"> <li><%= area.name %> </li></a>
+          <% end %>
+      </ul>
+    </p>
+  </div>
+  </div>
+
   <div class="col-xs-12 col-md-6 pull-right">
   <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
