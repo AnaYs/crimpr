@@ -1,15 +1,14 @@
-<h1>Areas#show</h1>
-<p>Find me in app/views/areas/show.html.erb</p>
-
-
 
 <h1><%= @area.name %></h1>
 <p><%= @area.description %></p>
 
+<h3> Current temperature in <%= @area.name %> </h3>
+<%= @weather.current.temperature %>
+
 <h2>Sectors</h2>
   <ul>
     <% @area.sectors.each do |sector|%>
-    <li><%= sector.name %></li>
+    <li><%= link_to sector.name, area_sector_path(@area, sector) %></li>
     <% end %>
   </ul>
 

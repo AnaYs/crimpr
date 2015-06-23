@@ -37,6 +37,7 @@ gem "rails-assets-underscore"
 
 #Weather API
 gem 'barometer'
+gem 'barometer-yahoo'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

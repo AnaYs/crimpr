@@ -54,6 +54,8 @@ GEM
       nori
       tzinfo (>= 0.3.14)
       virtus (>= 1.0.0)
+    barometer-yahoo (0.0.1)
+      barometer (~> 0.9.7)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.4.1)
@@ -184,6 +186,7 @@ PLATFORMS
 
 DEPENDENCIES
   barometer
+  barometer-yahoo
   bootstrap-sass (~> 3.3.1)
   byebug
   coffee-rails (~> 4.1.0)
@@ -202,3 +205,6 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.4

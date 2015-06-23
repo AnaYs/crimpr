@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :areas, only: [:index, :show]
+  resources :areas, only: [:index, :show] do
+    resources :sectors, only: [:index, :show]
+  end
 
   root 'areas#index'
 

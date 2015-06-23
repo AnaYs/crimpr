@@ -17,7 +17,7 @@ Climbing is forbidden on the crags behind the village.",
   {
     name: "Rochers de Freyr",
     description: "Dominating the Meuse, the Rochers de Freyr is the most important climbing area in Belgium. The site counts 7 main crags and 8 secondary crags. Over 600 routes in all varieties.",
-    location: "Freyr (Hastière)"
+    location: "Falmignoul, Freyr"
   },
   {
     name: "Rocher de Landelies",
