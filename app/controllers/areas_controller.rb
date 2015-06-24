@@ -1,6 +1,8 @@
 class AreasController < ApplicationController
   before_filter :set_area, only: [:show]
 
+
+
   def index
     @areas = Area.all
     @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
@@ -12,8 +14,19 @@ class AreasController < ApplicationController
   end
 
   def show
-    @barometer = Barometer.new(@area.location)
+   # @barometer = Barometer.new(@area.location) # ORIGINAL
+
+    @barometer = Barometer.new(barometer_coordinates)
     @weather = @barometer.measure
+    # byebug
+    # byebug to see in terminal which other fields are returned in the json!
+    # then type @weather
+  end
+
+  def barometer_coordinates
+    latitude = @area.latitude
+    longitude = @area.longitude
+    [latitude, longitude].join(',')
   end
 
   protected

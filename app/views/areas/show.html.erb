@@ -5,6 +5,15 @@
 <h3> Current temperature in <%= @area.name %> </h3>
 <%= @weather.current.temperature %>
 
+<h3> Current other weather in <%= @area.name %> </h3>
+<%= @weather.current.pressure %>
+<br>
+<p> Skies are <%= @weather.current.condition %> </p>
+<p> Once we download the icons, this will become a little picture! Now, it's just boring text! <%= @weather.current.icon %> </p>
+
+<p> Sun rises at <%= @weather.current.sun.rise %> </p>
+<p> Sun sets at <%= @weather.current.sun.set %> </p>
+
 <h2>Sectors</h2>
   <ul>
     <% @area.sectors.each do |sector|%>
