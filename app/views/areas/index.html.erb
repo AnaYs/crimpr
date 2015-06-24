@@ -16,21 +16,16 @@
   </div>
 
   <div class="col-xs-12 col-md-6 pull-right">
-  <div id="map" style="width: 100%; height: 600px;"></div>
+  <div id="geolocation" style="width: 100%; height: 600px;"></div>
   </div>
 </div>
 
-  <% content_for(:after_js) do %>
+  <% content_for(:before_js) do %>
     <%= javascript_tag do %>
-      $(document).on('ready', function() {
-        handler = Gmaps.build('Google');
-        var mapOptions = { mapTypeId: google.maps.MapTypeId.SATELLITE };
-        handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-          markers = handler.addMarkers(<%= raw @markers.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-        });
-      })
+      var markers = <%= raw @markers.to_json %>;
+      var image_icon = "<%= image_url "climber_icon.png" %>";
     <% end %>
   <% end %>
 </div>
+
+
