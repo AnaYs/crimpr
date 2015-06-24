@@ -10,19 +10,25 @@
 area_attributes = [
   {
     name: "Rochers de Marche-les-Dames",
-    description: "Part of the crags is situated inside a military camp. Access granted for Belgian citizens in posession of their ID & membership card.
+    description: "Marche-les-Dames, Beez (Namur), Part of the crags is situated inside a military camp. Access granted for Belgian citizens in posession of their ID & membership card.
 Climbing is forbidden on the crags behind the village.",
-    location: "Marche-les-Dames, Beez (Namur)"
+    # location: "Marche-les-Dames, Beez (Namur)",
+    latitude: 15.0000000,
+    longitude: 32.0000000
   },
   {
     name: "Rochers de Freyr",
-    description: "Dominating the Meuse, the Rochers de Freyr is the most important climbing area in Belgium. The site counts 7 main crags and 8 secondary crags. Over 600 routes in all varieties.",
-    location: "Falmignoul, Freyr"
+    description: "Falmignoul, Freyr, Dominating the Meuse, the Rochers de Freyr is the most important climbing area in Belgium. The site counts 7 main crags and 8 secondary crags. Over 600 routes in all varieties.",
+    # location: "Falmignoul, Freyr",
+    latitude: -90.0000000,
+    longitude: 0.0000000
   },
   {
     name: "Rocher de Landelies",
-    description: "Perhaps the most beautyfull slab in the country. Routes up to 7a present a choice for the beginning to moderate climber.",
-    location: "Landelies (Montigny-le-Tilleul)"
+    description: "Landelies (Montigny-le-Tilleul), Perhaps the most beautyfull slab in the country. Routes up to 7a present a choice for the beginning to moderate climber.",
+    # location: "Landelies (Montigny-le-Tilleul)"
+    latitude: 50.8500000,
+    longitude: 4.3500000
   }
 
 ]
