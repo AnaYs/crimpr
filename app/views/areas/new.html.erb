@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row row-centered">
+    <div class="col-xs-6 col-centered col-min">
+
+      <h2>Adding a new crag</h2>
+
+      <%= simple_form_for(@area) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :name, required: true, autofocus: true %>
+          <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this area") %>
+          <%= f.input :location, required: true %>
+        </div>
+
+        <div id="geolocation" style="width: 100%; height: 600px;"></div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Add" %>
+        </div>
+      <% end %>
+
+
+
+  </div>
+  </div>
+</div>
+ <% content_for(:before_js) do %>
+    <%= javascript_tag do %>
+      var image_icon = "<%= image_url "climber_icon.png" %>";
+  <% end %>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      var mapOptions = { mapTypeId: google.maps.MapTypeId.SATELLITE };
+      var handler = Gmaps.build('Google');
+
+      handler.buildMap({
+        provider: mapOptions,
+        internal: {id: 'geolocation'}}, function(){
+          if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(displayOnMap);
+        });
+
+      function displayOnMap(position){
+        var marker = handler.addMarker({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          infowindow: 'Your location',
+          picture: {
+            url: image_icon,
+            width: 36,
+            height: 36 }
+        });
+
+      handler.map.centerOn(marker);
+      };
+    });
+  <% end %>
+<% end %>

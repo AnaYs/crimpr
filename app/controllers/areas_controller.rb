@@ -4,18 +4,24 @@ class AreasController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
   def index
-   # @areas = Area.all # Original
+    # user can search based on geolocation or on a specified search location
+    # if params[:query]
+    #   location = params[:query]
 
-    if params[:query]
-    location = params[:query]
-      else
-    location = [params[:lat], params[:lng]]
-    end
+    # elsif params[:lat]
+    #   location = [params[:lat], params[:lng]
 
-   @areas = Area.near(location, 4000)
+    # else
+    #   location = "Brussels"
+    # end
 
+    # # latitude and longitude for myPositionMarker
+    # coords = MultiGeocoder.geocode(location)
+    # @lat = coords.
+    # @lng = ""
 
-
+    # Finding areas near the defined location
+    @areas = Area.near(location, 4000)
     @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
       marker.lat area.latitude
       marker.lng area.longitude
@@ -32,9 +38,13 @@ class AreasController < ApplicationController
   end
 
   def new
+    @area = Area.new
   end
 
   def create
+    @area = Area.create(area_params)
+    redirect_to area_path(@area)
+    #name, description, grades_distribution, location, latitude, longitude
   end
 
   protected
@@ -43,7 +53,7 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :description, :grades_distribution, :location)
+    params.require(:area).permit(:name, :description, :grades_distribution, :location, :latitude, :longitude)
   end
 
   def barometer_coordinates
