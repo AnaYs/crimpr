@@ -5,23 +5,26 @@ class AreasController < ApplicationController
 
   def index
     # user can search based on geolocation or on a specified search location
-    # if params[:query]
-    #   location = params[:query]
-
-    # elsif params[:lat]
-    #   location = [params[:lat], params[:lng]
-
-    # else
-    #   location = "Brussels"
-    # end
-
-    # # latitude and longitude for myPositionMarker
-    # coords = MultiGeocoder.geocode(location)
-    # @lat = coords.
-    # @lng = ""
+    if params[:query]
+      location = params[:query]
+      # latitude and longitude for myPositionMarker
+        coords = Geocoder.coordinates(location)
+          @lat = coords[0]
+          @lng = coords[1]
+    elsif params[:lat]
+      location = [params[:lat], params[:lng]]
+        @lat = params[:lat]
+        @lng = params[:lng]
+    else
+      location = "Brussels"
+      # latitude and longitude for myPositionMarker
+        coords = Geocoder.coordinates(location)
+          @lat = coords[0]
+          @lng = coords[1]
+    end
 
     # Finding areas near the defined location
-    @areas = Area.near(location, 4000)
+    @areas = Area.near(location, 50)
     @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
       marker.lat area.latitude
       marker.lng area.longitude

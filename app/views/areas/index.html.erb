@@ -22,11 +22,9 @@
 
   <% content_for(:before_js) do %>
     <%= javascript_tag do %>
-
       var markers = <%= raw @markers.to_json %>;
-
       var lat = <%= @lat %>;
-      var lng = <%= params[:lng] %>;
+      var lng = <%= @lng %>;
 
       var image_icon = "<%= image_url "climber_icon.png" %>";
     <% end %>

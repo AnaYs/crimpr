@@ -14,12 +14,10 @@
 
   <%= yield(:before_js) %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <%= render "shared/notice" %>
+  <%= render "shared/alert" %>
 
   <%= yield %>
-
-
 
   <%= javascript_include_tag "application" %>
 
@@ -28,7 +26,6 @@
   <%= javascript_include_tag "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js" %>
 
   <%= yield(:after_js) %>
-
 
   <%= render "shared/footer" %>
 
