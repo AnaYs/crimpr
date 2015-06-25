@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_filter :set_area, only: [:show]
+  before_action :set_area, only: [:show]
 
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
@@ -36,8 +36,6 @@ class AreasController < ApplicationController
   def show
     @barometer = Barometer.new(barometer_coordinates)
     @weather = @barometer.measure
-    # byebug to see in terminal which other fields are returned in the json!
-    # then type pp @weather (btw, pp is "pretty print")
   end
 
   def new
@@ -50,7 +48,8 @@ class AreasController < ApplicationController
     #name, description, grades_distribution, location, latitude, longitude
   end
 
-  protected
+  private
+
   def set_area
     @area = Area.find(params[:id])
   end
