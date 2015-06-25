@@ -14,7 +14,10 @@ body {
   text-align: justify;
   border-radius: 4px;
   margin: 20px;
+}
 
+#notice, #alert {
+  background-color: none;
 }
 
 .margin {
@@ -39,3 +42,5 @@ body {
     /* custom min width */
     min-width:320px;
 }
+
+
