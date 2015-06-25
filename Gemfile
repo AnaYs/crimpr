@@ -39,6 +39,9 @@ gem "rails-assets-underscore"
 gem 'barometer'
 gem 'barometer-yahoo'
 
+#Devise Gem for Authentication
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

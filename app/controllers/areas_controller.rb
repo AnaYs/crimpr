@@ -1,6 +1,8 @@
 class AreasController < ApplicationController
   before_filter :set_area, only: [:show]
 
+  skip_before_action :authenticate_user!, only: [:index, :show, :home]
+
   def index
     @areas = Area.all
     @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
@@ -16,6 +18,12 @@ class AreasController < ApplicationController
     @weather = @barometer.measure
     # byebug to see in terminal which other fields are returned in the json!
     # then type @weather
+  end
+
+  def new
+  end
+
+  def create
   end
 
   protected

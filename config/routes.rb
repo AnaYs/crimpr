@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :areas, only: [:index, :show] do
     resources :sectors, only: [:index, :show]
   end
