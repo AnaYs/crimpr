@@ -42,6 +42,9 @@ gem 'barometer-yahoo'
 #Devise Gem for Authentication
 gem 'devise'
 
+#Geokit gem for location-based geocoding and search
+gem 'geokit-rails', github: 'geokit/geokit-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
