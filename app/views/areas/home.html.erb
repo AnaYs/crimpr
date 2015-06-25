@@ -1,0 +1,52 @@
+<!-- Banner -->
+<div id="banner">
+
+<!-- Header -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 padded">
+         <h2>Where will you climb next?</h2>
+
+<!-- search form for location -->
+            <%= form_tag(areas_path, method: "get", class: "navbar-form", id: "search-form") do %>
+              <%= text_field_tag(:query)%>
+              <%= submit_tag("Find") %>
+            <% end %>
+
+<!-- search with Geolocation -->
+            <form id="geolocation" action="" >
+            <input type="hidden" id="lat" name="lat" value="">
+            <input type="hidden" id="lng" name="lng" value="">
+            <input type="Submit" name="Submit" class='btn btn-default' value='Search near me' style='height: 26px;line-height: 12px;'/>
+            </form>
+
+      </div>
+    </div>
+  </div>
+
+  <% content_for(:after_js) do %>
+    <%= javascript_tag do %>
+
+      $(document).ready(function(){
+
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position){
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            $("#lat").val(lat);
+            $("#lng").val(lng);
+            $("#geolocation").attr('action', '/areas');
+          });
+        };
+      });
+
+
+
+
+
+
+    <% end %>
+  <% end %>
+
+</div>

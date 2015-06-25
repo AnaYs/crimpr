@@ -1,7 +1,7 @@
 /* -------------------------------------
  * Colors & Fonts
  * ------------------------------------- */
-$navbar-color: #F3843E;
+$navbar-color: #FDFDFD;
 $navbar-hover-color: #656845;
 $navbar-font-family: $header-font;
 $navbar-bg: #393939;
@@ -20,7 +20,7 @@ $navbar-border-bottom-color: grey;
  * ------------------------------------- */
 $navbar-btn-height: 40px;
 $navbar-btn-bg: #6E6E6E;
-$navbar-btn-color: #FF9900;
+$navbar-btn-color: #FDFDFD;
 $navbar-btn-horizontal-padding: 10px;
 $navbar-btn-radius: 2px;
 
@@ -69,6 +69,7 @@ $navbar-profile-border-width: 2px;
     color: $navbar-color;
     padding-top: $navbar-vertical-padding;
     padding-bottom: $navbar-vertical-padding;
+
   }
 
   .navbar-nav > li > a.btn {
@@ -89,6 +90,7 @@ $navbar-profile-border-width: 2px;
   .navbar-brand img, .navbar-brand svg {
     height: 50px;
     padding: 0px;
+    border-radius: 40%;
   }
 
   .img-avatar{
