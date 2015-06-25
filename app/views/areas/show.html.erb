@@ -35,10 +35,11 @@
 <% end %>
 
 <% @area.pictures.each do |pic| %>
-<%= pic.id %>
 <%= image_tag pic.picture.url %>
 
 <% end %>
+
+<br>
 
 <%= link_to "Home", areas_path, class:"btn btn-default" %>
 <!-- You can't put a regular HTML-button in here or you need to append
