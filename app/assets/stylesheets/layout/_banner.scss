@@ -3,8 +3,8 @@
   background-size: cover;
   background-attachment: fixed;
   height: 800px;
-  padding-top: 130px;
-}
+  margin-top: -50px;
+  }
 
 
 #banner h2 {
@@ -18,4 +18,8 @@
 
 #banner i {
   font-size: 24px
+}
+
+.padded {
+  padding-top: 250px;
 }
