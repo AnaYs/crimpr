@@ -26,8 +26,19 @@
 
 <h2>Pictures</h2>
 
+<%= form_for [@area, @area.pictures.new] do |f| %>
+  <p>
+     <%= f.label :picture %>
+     <%= f.file_field :picture %>
+  </p>
+  <p> <%= f.submit %> </p>
+<% end %>
 
+<% @area.pictures.each do |pic| %>
+<%= pic.id %>
+<%= image_tag pic.picture.url %>
 
+<% end %>
 
 <%= link_to "Home", areas_path, class:"btn btn-default" %>
 <!-- You can't put a regular HTML-button in here or you need to append
