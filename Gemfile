@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'simple_form'
+gem 'figaro'
 
 #Geocoder
 gem "geocoder"
@@ -42,8 +43,13 @@ gem 'barometer-yahoo'
 #Devise Gem for Authentication
 gem 'devise'
 
+
 #Geokit gem for location-based geocoding and search
 gem 'geokit-rails', github: 'geokit/geokit-rails'
+
+# Easy picture uploading
+gem 'aws-sdk', '<2.0'
+gem 'paperclip'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :areas, only: [:index, :show, :new, :create] do
     resources :sectors, only: [:index, :show, :new, :create]
+
+  end
+  resources :areas do
+    resources :pictures, only: [:index, :show, :new, :create]
   end
 
   root 'areas#home'
