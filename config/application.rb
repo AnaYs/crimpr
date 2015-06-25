@@ -11,6 +11,13 @@ require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+
+# Change those values with yours!
+S3_BUCKET_NAME: "crimpr"
+AWS_ACCESS_KEY_ID: "AKIAIE2VLGIYXG3VKPLQ"
+AWS_SECRET_ACCESS_KEY: "bl2u1tOLNFD9CEsawPYq668PaB8IdtTkeDgK87fY"
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -33,3 +40,5 @@ module Crimpr
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+
