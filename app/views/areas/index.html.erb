@@ -5,7 +5,7 @@
   <div class="col-xs-12 col-md-6 pull-left">
   <div id="list" style="width: 100%; height: 600px;">
     <p>
-    This is a list and below I'm testing the list
+    <h1>Climbing Areas</h1>
       <ul>
         <% @areas.each do |area| %>
           <a href= "<%= area_path(area) %>"> <li><%= area.name %> </li></a>
@@ -22,8 +22,52 @@
 
   <% content_for(:before_js) do %>
     <%= javascript_tag do %>
+
       var markers = <%= raw @markers.to_json %>;
+
+      var lat = <%= params[:lat] %>;
+      var lng = <%= params[:lng] %>;
+
       var image_icon = "<%= image_url "climber_icon.png" %>";
+<% end %>
+<% end %>
+
+<% content_for(:after_js) do %>
+<%= javascript_tag do %>
+      $(document).on('ready', function() {
+        var mapOptions = { mapTypeId: google.maps.MapTypeId.SATELLITE };
+        var handler = Gmaps.build('Google');
+
+        var myPositionMarker = {
+            lat: lat,
+            lng: lng,
+            infowindow: 'Your location',
+            picture: {
+              url: image_icon,
+              width: 36,
+              height: 36
+            }
+          };
+
+          markers.push(myPositionMarker);
+
+        handler.buildMap({
+          provider: mapOptions,
+          internal: {id: 'geolocation'}}, function() {
+          var markersHandled = handler.addMarkers(markers);
+
+        handler.bounds.extendWith(markersHandled);
+        handler.fitMapToBounds();
+        });
+      });
+
+
+
+     <!--    // handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
+        //   var markers = handler.addMarkers();
+        //   handler.bounds.extendWith(markers);
+        //   handler.fitMapToBounds();
+        // }); -->
     <% end %>
   <% end %>
 </div>

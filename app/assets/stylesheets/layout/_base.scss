@@ -5,6 +5,15 @@
  * already a Bootstrap SCSS variable that does the same job
  * ------------------------------------- */
 
- body {
-    padding-top: 65px;
+body {
+    padding-top: 62px;
+    background-color: #DFE8EB;
+}
+
+#list {
+  width: 80%;
+  text-align: justify;
+  border-radius: 4px;
+  margin: 20px;
+
 }

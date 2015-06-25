@@ -1,0 +1,22 @@
+#banner {
+  background-image: url(image_path("image-3.jpg"));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 800px;
+  padding-top: 150px;
+}
+
+
+#banner h2 {
+  color: #E6E5E3;
+}
+
+#banner .btn {
+  background-color: #E6E5E3;
+  padding: none;
+}
+
+#banner i {
+  font-size: 24px
+}
