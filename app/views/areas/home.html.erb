@@ -37,9 +37,13 @@
             $("#lat").val(lat);
             $("#lng").val(lng);
             $("#geolocation").attr('action', '/areas');
-          });
-        };
-      });
+          })
+        }
+        else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        });
+
 
 
 
