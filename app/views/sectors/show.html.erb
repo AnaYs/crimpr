@@ -2,6 +2,14 @@
 
 <p><%= @sector.description %></p>
 
+<%= form_for([@area, @sector], html: { multipart: true }) do |f| %>
+  <p>
+    <%= f.label :document %>
+    <%= f.file_field :document %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
 
 <%= link_to @area.name, area_path, class:"btn btn-default" %>
 <%= link_to "Home", areas_path, class:"btn btn-default" %>

@@ -2,15 +2,14 @@
   <div class="row row-centered">
     <div class="col-xs-6 col-centered col-min">
 
-      <h2>Adding a new crag</h2>
+      <h2>Add a new Sector</h2>
 
-      <%= simple_form_for(@area) do |f| %>
+      <%= simple_form_for [@area, @sector] do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
           <%= f.input :name, required: true, autofocus: true %>
-          <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this area") %>
-          <%= f.input :location, required: true %>
+          <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this sector") %>
         </div>
 
         <div id="geolocation" style="width: 100%; height: 600px;"></div>
@@ -19,12 +18,10 @@
           <%= f.button :submit, "Add" %>
         </div>
       <% end %>
-
-
-
-  </div>
+    </div>
   </div>
 </div>
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -42,12 +39,16 @@
       function displayOnMap(position){
         var marker = handler.addMarker({
           lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }, {draggable: true});
+          lng: position.coords.longitude,
+          infowindow: 'Your location',
+          picture: {
+            url: image_icon,
+            width: 36,
+            height: 36 }
+        });
 
       handler.map.centerOn(marker);
       };
     });
-
   <% end %>
 <% end %>

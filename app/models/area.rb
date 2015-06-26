@@ -1,4 +1,6 @@
 class Area < ActiveRecord::Base
+  attr_accessor :distance
+
   has_many :sectors
   has_many :pictures
   geocoded_by :location

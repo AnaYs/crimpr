@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :areas, only: [:index, :show, :new, :create] do
-    resources :sectors, only: [:index, :show, :new, :create]
+    resources :sectors, only: [:index, :show, :new, :create, :update]
   end
 
   resources :areas do
