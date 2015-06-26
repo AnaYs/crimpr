@@ -11,17 +11,17 @@
           <%= f.input :name, required: true, autofocus: true %>
           <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this area") %>
           <%= f.input :location, required: true %>
+          <%= f.input :latitude %>
+          <%= f.input :longitude %>
         </div>
 
         <div id="geolocation" style="width: 100%; height: 600px;"></div>
 
+        <br>
         <div class="form-actions">
           <%= f.button :submit, "Add" %>
         </div>
       <% end %>
-
-
-
   </div>
   </div>
 </div>
@@ -29,25 +29,48 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     $(document).on('ready', function() {
-      var mapOptions = { mapTypeId: google.maps.MapTypeId.SATELLITE };
+      var location = $("#area_location").val
+      var mapOptions = {
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      };
       var handler = Gmaps.build('Google');
 
       handler.buildMap({
         provider: mapOptions,
-        internal: {id: 'geolocation'}}, function(){
-          if(navigator.geolocation)
-            navigator.geolocation.getCurrentPosition(displayOnMap);
-        });
+        internal: {
+          id: 'geolocation'
+        }
+      }, function() {
+        if (navigator.geolocation)
+          navigator.geolocation.getCurrentPosition(displayOnMap);
+      });
 
-      function displayOnMap(position){
+      function displayOnMap(position) {
         var marker = handler.addMarker({
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }, {draggable: true});
+        }, {
+          draggable: true
+        });
 
-      handler.map.centerOn(marker);
+        handler.map.centerOn(marker);
+
+        google.maps.event.addListener(marker.serviceObject, 'dragend', function() { handler.map.handleDragEnd(this.getPosition()) });
+      };
+
+      handler.map.handleDragEnd = function(position) {
+        var latitude = position["A"];
+        var longitude = position["F"];
+        var geocoder = new google.maps.Geocoder();
+          geocoder.geocode({
+            latLng: position
+          }, function(responses) {
+        $("#area_location").val(responses[0].formatted_address)
+        });
+
+        $("#area_latitude").val(latitude);
+        $("#area_longitude").val(longitude);
       };
     });
-
   <% end %>
 <% end %>
