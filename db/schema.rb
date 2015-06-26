@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626120607) do
+ActiveRecord::Schema.define(version: 20150626170150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150626120607) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "sectors", ["area_id"], name: "index_sectors_on_area_id", using: :btree
