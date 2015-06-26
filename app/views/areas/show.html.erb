@@ -20,7 +20,9 @@
     <li><%= link_to sector.name, area_sector_path(@area, sector) %></li>
     <% end %>
   </ul>
-
+<%= link_to new_area_sector_path(@area), class:"btn btn-default" do %>
+              <i class="fa fa-plus"> Add a sector for <%= @area.name %> </i>
+            <% end %>
 
 <br>
 
