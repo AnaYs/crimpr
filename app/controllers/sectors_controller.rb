@@ -1,5 +1,5 @@
 class SectorsController < ApplicationController
-  before_filter :set_area, only: [:index, :show]
+  before_action :set_area, only: [:index, :show]
 
   def index
     @sectors = @area.sectors.all
@@ -9,7 +9,8 @@ class SectorsController < ApplicationController
     @sector = @area.sectors.find(params[:id])
   end
 
-  protected
+  private
+
   def set_area
     @area = Area.find(params[:area_id])
   end
