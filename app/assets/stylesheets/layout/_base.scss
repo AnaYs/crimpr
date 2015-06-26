@@ -6,7 +6,7 @@
  * ------------------------------------- */
 
 body {
-    padding-top: 62px;
+    padding-top: 35px;
 }
 
 #list {
@@ -20,6 +20,12 @@ body {
 .margin {
   margin-left: 20px;
 }
+
+.alert {
+  padding: 0px;
+  margin: 0;
+  border-radius: 0px;
+  border: 0px;
 
 // Classes to center a column in bootstrap
 .row-centered {

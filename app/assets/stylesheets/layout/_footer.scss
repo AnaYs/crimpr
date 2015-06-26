@@ -1,15 +1,18 @@
 .footer-basic-centered{
 
-  background-color: #393939;
+  background: rgba(13,0,32,0.85);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
-  height: 220px;
+  height: 100px;
   text-align: center;
   font: normal 18px sans-serif;
 
-  padding: 10px;
-  margin-top: 20px;
+  padding: 5px;
+  margin-top: 0px;
+  font-size: 14px;
+
+  -webkit-font-smoothing: antialiased;
 }
 
 #logo {
@@ -18,46 +21,54 @@
 }
 
 .footer-basic-centered .footer-company-name{
-  color:  #F3843E;
-  font-size: 14px;
+  color:  #ffffff;
   margin: 0;
 }
+
+.footer-company-name {
+  font-size: 12px;
+}
+
 
 .footer-basic-centered .footer-links{
   list-style: none;
   font-weight: bold;
-  color:  #F3843E;
-  padding: 35px 0 10px;
+  color:  #ffffff;
+  padding: 5px 0 0 0px;
   margin: 0;
 }
 
 .footer-basic-centered .footer-links a{
   display:inline-block;
   text-decoration: none;
-  color: #F3843E;
+  color: #ffffff;
   padding-right: 40px;
   font-size: 12px;
 }
 
+.footer-basic-centered .footer-links a:hover {
+  color: #ff9816;
+}
+
 .footer-icons{
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .footer-icons a{
   display: inline-block;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  background-color:  #6E6E6E;
+  background-color:  #ff9816;
   border-radius: 2px;
 
   font-size: 20px;
-  color: #FF9900;
+  color: #ffffff;
   text-align: center;
   line-height: 35px;
 
-  margin-right: 3px;
-  margin-bottom: 5px;
+  margin-right: 10px;
+  margin-bottom: 3px;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */

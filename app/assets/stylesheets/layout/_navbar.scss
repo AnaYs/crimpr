@@ -1,17 +1,17 @@
 /* -------------------------------------
  * Colors & Fonts
  * ------------------------------------- */
-$navbar-color: #FDFDFD;
-$navbar-hover-color: #656845;
-$navbar-font-family: $header-font;
-$navbar-bg: #393939;
+$navbar-color: #ffffff;
+$navbar-hover-color: #ff9816;
+$navbar-font-family: "Montserrat", "sans-serif";
+$navbar-bg: rgba(13, 0, 32, 0.70);
 
 /* -------------------------------------
  * Box model
  * ------------------------------------- */
-$navbar-height: 50px;
-$navbar-vertical-padding: 5px;
-$navbar-horizontal-padding: 20px;
+$navbar-height: 58px;
+$navbar-vertical-padding: 0px;
+$navbar-horizontal-padding: 10px;
 $navbar-border-bottom-width: 0;
 $navbar-border-bottom-color: grey;
 
@@ -19,8 +19,8 @@ $navbar-border-bottom-color: grey;
  * Navbar button
  * ------------------------------------- */
 $navbar-btn-height: 40px;
-$navbar-btn-bg: #6E6E6E;
-$navbar-btn-color: #FDFDFD;
+$navbar-btn-bg: #ff9816;
+$navbar-btn-color: #ffffff;
 $navbar-btn-horizontal-padding: 10px;
 $navbar-btn-radius: 2px;
 
@@ -38,12 +38,16 @@ $navbar-profile-border-width: 2px;
   background: $navbar-bg;
   font-family: $navbar-font-family;
   border: none;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 100;
   padding-left: $navbar-horizontal-padding;
   padding-right: $navbar-horizontal-padding;
-  border-bottom: $navbar-border-bottom-width solid $navbar-border-bottom-color;
+  // border-bottom: $navbar-border-bottom-width solid $navbar-border-bottom-color;
   min-height: 0;
   transition: background 0.4s ease;
+
+  -webkit-font-smoothing: antialiased;
+
 
   .navbar-nav > li > a,
   .navbar-nav > .open > a,
@@ -66,7 +70,7 @@ $navbar-profile-border-width: 2px;
   .navbar-brand,
   .navbar-brand:hover {
     outline: none;
-    color: $navbar-color;
+    // color: $navbar-color;
     padding-top: $navbar-vertical-padding;
     padding-bottom: $navbar-vertical-padding;
 
@@ -88,9 +92,10 @@ $navbar-profile-border-width: 2px;
   }
 
   .navbar-brand img, .navbar-brand svg {
-    height: 50px;
+    height: 60px;
     padding: 0px;
-    border-radius: 40%;
+    margin-top: 0;
+    // border-radius: 40%;
   }
 
   .img-avatar{
