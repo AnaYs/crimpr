@@ -31,6 +31,10 @@ class AreasController < ApplicationController
       marker.infowindow area.name
       marker.json({ area_id: area.id })
     end
+
+    @areas.each do |area|
+      area.distance = area.distance_to([@lat, @lng]).round(2)
+    end
   end
 
   def show
@@ -45,7 +49,7 @@ class AreasController < ApplicationController
   def create
     @area = Area.create(area_params)
     redirect_to area_path(@area)
-    #name, description, grades_distribution, location, latitude, longitude
+    #latitude, longitude via GmapsDragPin
   end
 
   private

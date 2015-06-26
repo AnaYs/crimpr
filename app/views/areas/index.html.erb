@@ -6,11 +6,16 @@
   <div id="list">
     <p>
     <h1>Climbing Areas</h1>
-      <ul>
+      <ol>
         <% @areas.each do |area| %>
-          <a href= "<%= area_path(area) %>"> <li><%= area.name %> </li></a>
+        <li>
+        <ul class = "list-inline">
+          <li><a href= "<%= area_path(area) %>"> <%= area.name %></a></li>
+          <li> <%= area.distance %>km</li>
+        </ul>
+        </li>
           <% end %>
-      </ul>
+      </ol>
     </p>
   </div>
   </div>
