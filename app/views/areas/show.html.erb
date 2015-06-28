@@ -1,49 +1,63 @@
+<div class="container-fluid">
 
-<h1><%= @area.name %></h1>
-<p><%= @area.description %></p>
+  <div class="row">
 
-<h3> Current temperature in <%= @area.name %> </h3>
-<%= @weather.current.temperature %>
+    <div class="col-xs-12 col-md-6 pull-left">
+      <h1><%= @area.name %></h1>
 
-<h3> Current other weather in <%= @area.name %> </h3>
-<%= @weather.current.pressure %>
+      <div class="row real-time">
+        <ul class = "list-inline">
+          <li><%= @weather.current.temperature %></li>
+          <li><%= @weather.current.pressure %></li>
+          <li><%= @weather.current.condition %></li>
+          <li><%= @weather.current.sun.rise.strftime('%I:%M:%S %p') %> </li>
+          <li><%= @weather.current.sun.set.strftime('%I:%M:%S %p') %></li>
+        </ul>
+      </div>
+
+      <div class="row description">
+        <p><%= @area.description %></p>
+      </div>
+
+
+      <h2>Sectors</h2>
+      <div id="list">
+        <ul>
+          <% @area.sectors.each do |sector|%>
+            <li><%= link_to sector.name, area_sector_path(@area, sector) %></li>
+          <% end %>
+        </ul>
+        <%= link_to new_area_sector_path(@area), class:"btn btn-default" do %>
+          <i class="fa fa-plus"> Add a sector for <%= @area.name %> </i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-10"><h2>Pictures</h2></div>
+      <div class="col-xs-2"><i class="fa fa-plus"></i></div>
+    </div>
+          <% @area.pictures.sample(4) do |pic| %>
+            <div class="col-xs-12 col-sm-3 pictures">
+              <%= image_tag pic.picture.url %>
+            </div>
+          <% end %>
+<!-- add this to a modal/ pop-up window on clicking plus symbol next to heading -->
+          <%= form_for [@area, @area.pictures.new] do |f| %>
+          <p>
+           <%= f.label :picture %>
+           <%= f.file_field :picture %>
+          </p>
+          <p> <%= f.submit %> </p>
+          <% end %>
+    </div>
+  </div>
+
 <br>
-<p> Skies are <%= @weather.current.condition %> </p>
-<p> Once we download the icons, this will become a little picture! Now, it's just boring text! <%= @weather.current.icon %> </p>
 
-<p> Sun rises at <%= @weather.current.sun.rise %> </p>
-<p> Sun sets at <%= @weather.current.sun.set %> </p>
+  <%= link_to "Home", areas_path, class:"btn btn-default" %>
 
-<h2>Sectors</h2>
-  <ul>
-    <% @area.sectors.each do |sector|%>
-    <li><%= link_to sector.name, area_sector_path(@area, sector) %></li>
-    <% end %>
-  </ul>
-<%= link_to new_area_sector_path(@area), class:"btn btn-default" do %>
-              <i class="fa fa-plus"> Add a sector for <%= @area.name %> </i>
-            <% end %>
-
-<br>
-
-<h2>Pictures</h2>
-
-<%= form_for [@area, @area.pictures.new] do |f| %>
-  <p>
-     <%= f.label :picture %>
-     <%= f.file_field :picture %>
-  </p>
-  <p> <%= f.submit %> </p>
-<% end %>
-
-<% @area.pictures.each do |pic| %>
-<%= image_tag pic.picture.url %>
-
-<% end %>
-
-<br>
-
-<%= link_to "Home", areas_path, class:"btn btn-default" %>
-<!-- You can't put a regular HTML-button in here or you need to append
- javascript to trigger the linking-action. Hence, you make a ERB link which you
- format as a button   -->
+</div>

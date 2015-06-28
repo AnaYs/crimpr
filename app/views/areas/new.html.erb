@@ -29,12 +29,15 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     $(document).on('ready', function() {
-      var location = $("#area_location").val
+      var marker = "";
+      var user_input = "";
+      var geocoder = new google.maps.Geocoder();
       var mapOptions = {
         mapTypeId: google.maps.MapTypeId.SATELLITE
       };
       var handler = Gmaps.build('Google');
 
+<!-- build map and display current position on map -->
       handler.buildMap({
         provider: mapOptions,
         internal: {
@@ -46,7 +49,7 @@
       });
 
       function displayOnMap(position) {
-        var marker = handler.addMarker({
+        marker = handler.addMarker({
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }, {
@@ -55,9 +58,11 @@
 
         handler.map.centerOn(marker);
 
+<!-- add event "handleDragEnd" on draggin of marker -->
         google.maps.event.addListener(marker.serviceObject, 'dragend', function() { handler.map.handleDragEnd(this.getPosition()) });
       };
 
+<!-- function "handleDragEnd" fills coordinates of marker into form fields -->
       handler.map.handleDragEnd = function(position) {
         var latitude = position["A"];
         var longitude = position["F"];
@@ -71,6 +76,35 @@
         $("#area_latitude").val(latitude);
         $("#area_longitude").val(longitude);
       };
+
+      $('#area_location').on("change", function() {
+        user_input = $("#area_location").val();
+            geocoder.geocode({ 'address': user_input},
+              function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  var latitude = results[0].geometry.location["A"];
+                  var longitude = results[0].geometry.location["F"];
+                  handler.removeMarker(marker);
+                  marker = handler.addMarker({
+                      lat: latitude,
+                      lng: longitude
+                  }, {
+                    draggable: true
+                  });
+                  $("#area_latitude").val(latitude);
+                  $("#area_longitude").val(longitude);
+                  handler.map.centerOn(marker);
+
+                  <!-- add event "handleDragEnd" on draggin of marker -->
+                  google.maps.event.addListener(marker.serviceObject, 'dragend', function() { handler.map.handleDragEnd(this.getPosition()) });
+                }
+                else {
+                  alert("Geocode was not successful for the following reason: " + status);
+                }
+              }
+            );
+      });
+
     });
   <% end %>
 <% end %>
