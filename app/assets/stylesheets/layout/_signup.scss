@@ -1,10 +1,13 @@
 #signup{
   background-image: url("/assets/image-5.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
   background-position: relative;
-  height: 650px;
-  margin-top: -75px;
+  height: 100%;
+  margin-top: -30px;
 }
 
 // .sign-up-text p span{
@@ -26,6 +29,8 @@
   top: 120px;
   background: rgba(255, 255, 255, 1.0);
   padding: 2rem;
+  border-radius: 2%;
+  box-shadow: 10%;
 }
 
 .sign-up-form h3{
