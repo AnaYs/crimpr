@@ -21,19 +21,19 @@
   </div>
 
   <div class="col-xs-12 col-md-6 pull-right">
-  <div id="geolocation" style="width: 100%; height: 600px;"></div>
+    <div id="geolocation" style="width: 100%; height: 600px;"></div>
   </div>
 </div>
 
-  <% content_for(:before_js) do %>
-    <%= javascript_tag do %>
-      var markers = <%= raw @markers.to_json %>;
-      var lat = <%= @lat %>;
-      var lng = <%= @lng %>;
+<% content_for(:before_js) do %>
+  <%= javascript_tag do %>
+    var markers = <%= raw @markers.to_json %>;
+    var lat = <%= @lat %>;
+    var lng = <%= @lng %>;
 
-      var image_icon = "<%= image_url "climber_icon.png" %>";
-    <% end %>
+    var image_icon = "<%= image_url "climber_icon.png" %>";
   <% end %>
+<% end %>
 
 <% content_for(:after_js) do %>
 <%= javascript_tag do %>
@@ -63,14 +63,6 @@
         handler.fitMapToBounds();
         });
       });
-
-
-
-     <!--    // handler.buildMap({ provider: mapOptions, internal: {id: 'map'}}, function(){
-        //   var markers = handler.addMarkers();
-        //   handler.bounds.extendWith(markers);
-        //   handler.fitMapToBounds();
-        // }); -->
     <% end %>
   <% end %>
 </div>

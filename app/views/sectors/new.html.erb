@@ -10,6 +10,9 @@
         <div class="form-inputs">
           <%= f.input :name, required: true, autofocus: true %>
           <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this sector") %>
+          <%= f.input :location, required: true %>
+          <%= f.input :latitude, required: true %>
+          <%= f.input :longitude, required: true %>
         </div>
 
         <div id="geolocation" style="width: 100%; height: 600px;"></div>
