@@ -1,5 +1,5 @@
 class Area < ActiveRecord::Base
-  attr_accessor :distance
+  attr_accessor :distance, :weather
 
   has_many :sectors
   has_many :pictures
