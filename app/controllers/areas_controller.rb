@@ -38,8 +38,18 @@ class AreasController < ApplicationController
   end
 
   def show
-    @barometer = Barometer.new(barometer_coordinates)
-    @weather = @barometer.measure
+    @temperature = current_weather.temperature
+    @condition = current_weather.condition
+    @pressure = current_weather.pressure
+    @sunrise = current_weather.sun.rise.strftime('%I:%M:%S %p')
+    @sunset = current_weather.sun.set.strftime('%I:%M:%S %p')
+    @sectors = @area.sectors
+    @markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
+      marker.lat sector.latitude
+      marker.lng sector.longitude
+      marker.infowindow sector.name
+      marker.json({ sector_id: sector.id })
+    end
   end
 
   def new
@@ -49,10 +59,14 @@ class AreasController < ApplicationController
   def create
     @area = Area.create(area_params)
     redirect_to area_path(@area)
-    #latitude, longitude via GmapsDragPin
   end
 
   private
+
+  def current_weather
+    @barometer = Barometer.new(barometer_coordinates)
+    @weather = @barometer.measure.current
+  end
 
   def set_area
     @area = Area.find(params[:id])
