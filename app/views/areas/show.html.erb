@@ -65,11 +65,8 @@
 <% content_for(:before_js) do %>
   <%= javascript_tag do %>
     var markers = <%= raw @markers.to_json %>;
-    console.log(markers);
     var lat = <%= @area.latitude %>;
     var lng = <%= @area.longitude %>;
-    console.log(lat);
-    console.log(lng);
     var image_icon = "<%= image_url "climber_icon.png" %>";
   <% end %>
 <% end %>
