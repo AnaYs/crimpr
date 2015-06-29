@@ -6,15 +6,40 @@
  * ------------------------------------- */
 
 body {
-    padding-top: 60px;
+    padding-top: 58px;
+    padding-bottom: 60px;
+    background-color: #E6E6E6;
+}
+.container {
+    height: auto;
+    width: 90%;
+}
+
+.bottom {
+    border-bottom: 1px solid #ccc;
 }
 
 #list {
-  width: 80%;
+  background-color: rgba(13, 0, 32, 0.70);
+  width: 90%;
+  height: 80%;
   text-align: justify;
   border-radius: 4px;
-  margin: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 1px 2px 2px 1px;
+  color: #141217;
 }
+
+#list h1, h2 {
+  color: #FDFDFC;
+}
+
+#list a {
+  color: rgba(13, 0, 32, 0.70);
+}
+
 
 #notice, #alert {
   background-color: none;
@@ -49,4 +74,17 @@ body {
     min-width:320px;
 }
 
+.card{
+  width: 100%;
+  text-align: center;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #F9F9F9;
+}
 
+.icon {
+  width: 20px;
+  height: 20px;
+}

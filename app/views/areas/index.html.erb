@@ -1,27 +1,37 @@
-<div class="container-fluid">
+<div class="container">
 
-<div class="row">
+<div class="row row-centered">
 
-  <div class="col-xs-12 col-md-6 pull-left">
+  <div class="col-xs-12 col-md-4 pull-left">
   <div id="list">
     <p>
     <h1>Climbing Areas</h1>
-      <table class="table table-hover">
         <% @areas.each do |area| %>
-        <tbody>
-        <ul class = "list-inline">
-          <li><a href= "<%= area_path(area) %>"> <%= area.name %></a></li>
-          <li> <%= area.distance %>km</li>
-        </ul>
-        </tbody>
-          <% end %>
-      </table>
+          <ul class = "list-group">
+            <li class = "list-group-item"><a href= "<%= area_path(area) %>"> <%= area.name %></a>
+              <span class="badge"><%= area.distance %>km</span>
+            </li>
+          </ul>
+        <% end %>
+
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Sort by
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">Current Weather</a></li>
+        <li><a href="#">Travel Time</a></li>
+        <li><a href="#">Difficulty of Routes</a></li>
+        <li><a href="#">Sector Orientation</a></li>
+      </ul>
+    </div>
     </p>
   </div>
   </div>
 
-  <div class="col-xs-12 col-md-6 pull-right">
-    <div id="geolocation" style="width: 100%; height: 600px;"></div>
+  <div class="col-xs-12 col-md-8 pull-right">
+    <div id="geolocation" style="width: 100%; height: 620px;"></div>
   </div>
 </div>
 
