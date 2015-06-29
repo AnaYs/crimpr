@@ -25,25 +25,29 @@ class AreasController < ApplicationController
 
     # Finding areas near the defined location
     @areas = Area.near(location, 50)
-    @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
-      marker.lat area.latitude
-      marker.lng area.longitude
-      marker.infowindow area.name
-      marker.json({ area_id: area.id })
-    end
-
     @areas.each do |area|
       area.distance = area.distance_to([@lat, @lng]).round(2)
     end
+
+    @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
+      area.weather = current_weather(area)
+      marker.lat area.latitude
+      marker.lng area.longitude
+      marker.infowindow render_to_string(partial: "/areas/infowindow", locals: { object: area})
+      marker.json({ area_id: area.id })
+    end
+
+
   end
 
   def show
-    @weather = current_weather
+    @weather = current_weather(@area)
     @temperature = @weather.temperature
     @condition = @weather.condition
     @pressure = @weather.pressure
     @sunrise = @weather.sun.rise.strftime('%I:%M:%S %p')
     @sunset = @weather.sun.set.strftime('%I:%M:%S %p')
+    @icon = @weather.icon
     @sectors = @area.sectors
     @markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
       marker.lat sector.latitude
@@ -64,8 +68,9 @@ class AreasController < ApplicationController
 
   private
 
-  def current_weather
-    @barometer = Barometer.new(barometer_coordinates)
+  def current_weather(area)
+    coordinates = barometer_coordinates(area)
+    @barometer = Barometer.new(coordinates)
     @weather = @barometer.measure.current
   end
 
@@ -77,9 +82,9 @@ class AreasController < ApplicationController
     params.require(:area).permit(:name, :description, :grades_distribution, :location, :latitude, :longitude)
   end
 
-  def barometer_coordinates
-    latitude = @area.latitude
-    longitude = @area.longitude
+  def barometer_coordinates(area)
+    latitude = area.latitude
+    longitude = area.longitude
     [latitude, longitude].join(',')
   end
 end
