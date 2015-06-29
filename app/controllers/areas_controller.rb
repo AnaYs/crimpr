@@ -45,8 +45,8 @@ class AreasController < ApplicationController
     @temperature = @weather.temperature
     @condition = @weather.condition
     @pressure = @weather.pressure
-    @sunrise = @weather.sun.rise.strftime('%I:%M:%S %p')
-    @sunset = @weather.sun.set.strftime('%I:%M:%S %p')
+    @sunrise = @weather.sun.rise.strftime('%I:%M %p')
+    @sunset = @weather.sun.set.strftime('%I:%M %p')
     @icon = @weather.icon
     @sectors = @area.sectors
     @markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
