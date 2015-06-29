@@ -41,6 +41,7 @@ class AreasController < ApplicationController
   end
 
   def show
+    @users = User.all
     @weather = current_weather(@area)
     @temperature = @weather.temperature
     @condition = @weather.condition
