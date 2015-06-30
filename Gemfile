@@ -51,6 +51,10 @@ gem 'geokit-rails', github: 'geokit/geokit-rails'
 gem 'aws-sdk', '<2.0'
 gem 'paperclip'
 
+# Use Private Pub to publish and subscribe messages through Faye, allows real-time updates
+gem "private_pub"
+gem "thin"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

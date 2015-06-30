@@ -15,4 +15,6 @@
 //= require bootstrap-sprockets
 //= require underscore
 //= require gmaps/google
+//= require areas/chat
+//= require private_pub
 //= require_tree .
