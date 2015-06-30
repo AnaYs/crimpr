@@ -11,8 +11,8 @@ area_attributes = [
   {
     name: "Rochers de Marche-les-Dames",
     description: "Marche-les-Dames, Beez (Namur), Part of the crags is situated inside a military camp. Access granted for Belgian citizens in posession of their ID & membership card.
-Climbing is forbidden on the crags behind the village.",
-    # location: "Marche-les-Dames, Beez (Namur)",
+    Climbing is forbidden on the crags behind the village.",
+    location: "Marche-les-Dames, Beez (Namur)",
     latitude: 15.0000000,
     longitude: 32.0000000
   },
