@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_area
 
   layout false
 
@@ -27,5 +28,9 @@ class ConversationsController < ApplicationController
 
   def interlocutor(conversation)
     current_user == conversation.recipient ? conversation.sender : conversation.recipient
+  end
+
+  def set_area
+    @area = Area.find(params[:area_id])
   end
 end

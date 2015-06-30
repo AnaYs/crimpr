@@ -2,15 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :areas, only: [:index, :show, :new, :create] do
+    resources :conversations do
+    resources :messages
+    end
     resources :sectors, only: [:index, :show, :new, :create, :update]
   end
 
   resources :areas do
     resources :pictures, only: [:index, :show, :new, :create]
-  end
-
-  resources :conversations do
-    resources :messages
   end
 
   root 'areas#home'

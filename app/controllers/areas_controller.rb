@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show]
 
-  skip_before_action :authenticate_user!, only: [:index, :show, :home]
+  skip_before_action :authenticate_user!, only: [:index, :home]
 
   def index
     # user can search based on geolocation or on a specified search location
@@ -36,12 +36,16 @@ class AreasController < ApplicationController
       marker.infowindow render_to_string(partial: "/areas/infowindow", locals: { object: area})
       marker.json({ area_id: area.id })
     end
-
-
   end
 
   def show
-    @users = User.all
+    @users = []
+    User.all.where.not(id: current_user.id).each do |user|
+      if user.timedout?(5.minutes.ago) == false
+        @users << user
+      end
+    end
+
     @weather = current_weather(@area)
     @temperature = @weather.temperature
     @condition = @weather.condition

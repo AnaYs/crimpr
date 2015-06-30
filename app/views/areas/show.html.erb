@@ -67,17 +67,18 @@
 
   <div class="row bottom">
     <div class="col-xs-12">
-      <table class="table table-striped">
-        <% @users.each_with_index do |user, index| %>
-        <tr>
-          <td><%= index +=1 %></td>
-          <td><%= user.email %></td>
-          <td>
-            <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
-                        "data-sid" => current_user.id, "data-rip" => user.id %>
-          </td>
-        </tr>
-        <% end %>
+      <table class="table table-striped" id="user_chat" data-area_id="<%= @area.id %>">
+         <h2 style="color: #333333;">Need a buddy?</h2>
+          <% @users.each_with_index do |user, index| %>
+          <tr>
+            <td><%= index +=1 %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= link_to "Open chat", "#", class: "btn btn-success btn-xs start-conversation",
+                          "data-sid" => current_user.id, "data-rip" => user.id %>
+            </td>
+          </tr>
+          <% end %>
       </table>
     </div>
   </div>

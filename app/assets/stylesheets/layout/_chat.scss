@@ -9,6 +9,8 @@
     position: expression("absolute");
     width: 280px;
     display: none;
+    padding: 100px;
+    margin-right: 9em;
 }
 
 .chatboxhead {
@@ -16,6 +18,7 @@
     color: white;
     padding: 0.5rem;
     overflow: hidden;
+    width: 280px;
 
     border-right: 1px solid rgba(85, 85, 85, 0.87);
     border-left: 1px solid rgba(85, 85, 85, 0.87);
@@ -129,6 +132,7 @@
 
 .chatboxinput {
     padding: 5px;
+    width: 280px;
     background-color: #ffffff;
     border-left: 1px solid #cccccc;
     border-right: 1px solid #cccccc;
