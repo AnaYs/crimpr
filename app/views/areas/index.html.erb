@@ -80,13 +80,6 @@
         directionsDisplay.setMap(handler.getMap());
         });
 
-        google.maps.event.addListener(markerobject, ‘click', function(evt){
-           console.log("marker is being clicked”);
-           console.log(evt.latLng.lat());
-           console.log(evt.latLng.lng());
-        });
-
-
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
 
