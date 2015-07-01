@@ -27,7 +27,8 @@ class AreasController < ApplicationController
     # Finding areas near the defined location
     @areas = Area.near(location, 50)
     @areas.each do |area|
-      area.distance = area.distance_to([@lat, @lng]).round(2)
+      area.distance = (area.distance_to([@lat, @lng]) * 1.609344).round(2)
+      area.bearing_to([@lat, @lng])
     end
 
     @markers = Gmaps4rails.build_markers(@areas) do |area, marker|
@@ -51,7 +52,7 @@ class AreasController < ApplicationController
     @icon = @weather.icon
 
     @sectors = @area.sectors
-    @markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
+    @sector_markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
       marker.lat sector.latitude
       marker.lng sector.longitude
       marker.infowindow sector.name

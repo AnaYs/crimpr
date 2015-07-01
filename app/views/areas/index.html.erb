@@ -9,9 +9,8 @@
         <% @areas.each do |area| %>
           <ul class = "list-group">
             <li class = "list-group-item"><a href= "<%= area_path(area) %>"> <%= area.name %></a>
-           <%= link_to "Directions", "#", class: "btn btn-success btn-xs navigate",
-                          "data-aid" => area.id %>
-              <span class="badge"><%= area.distance %>km</span>
+              <!-- <span class="badge btn btn-default traveltime"></span> -->
+              <span class="badge btn btn-default navigate"><%= area.distance %>km</span>
             </li>
           </ul>
         <% end %>
@@ -40,8 +39,11 @@
 <% content_for(:before_js) do %>
   <%= javascript_tag do %>
     var markers = <%= raw @markers.to_json %>;
+
     var lat = <%= @lat %>;
     var lng = <%= @lng %>;
+
+
 
     var image_icon = "<%= image_url "climber_icon.png" %>";
   <% end %>
@@ -64,6 +66,7 @@
             }
           };
 
+
           markers.push(myPositionMarker);
 
         handler.buildMap({
@@ -71,21 +74,23 @@
           internal: {id: 'geolocation'}}, function() {
           var markersHandled = handler.addMarkers(markers);
 
+        $.each(markers, function (index, marker) {
+         google.maps.event.addListener(marker, 'click', function(event) {
+            console.log(marker);
+            console.log(event.latLng.lat());
+            });
+        });
+
 
         handler.bounds.extendWith(markersHandled);
         handler.fitMapToBounds();
-        });
+
 
         $('.navigate').click( function () {
         directionsDisplay.setMap(handler.getMap());
         });
 
-        google.maps.event.addListener(markerobject, ‘click', function(evt){
-           console.log("marker is being clicked”);
-           console.log(evt.latLng.lat());
-           console.log(evt.latLng.lng());
         });
-
 
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
