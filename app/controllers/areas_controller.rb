@@ -40,12 +40,7 @@ class AreasController < ApplicationController
   end
 
   def show
-    @users = []
-    User.all.where.not(id: current_user.id).each do |user|
-      if user.timedout?(5.minutes.ago) == false
-        @users << user
-      end
-    end
+    @users = User.all.where.not(id: current_user.id)
 
     @weather = current_weather(@area)
     @temperature = @weather.temperature
@@ -54,6 +49,7 @@ class AreasController < ApplicationController
     @sunrise = @weather.sun.rise.strftime('%I:%M %p')
     @sunset = @weather.sun.set.strftime('%I:%M %p')
     @icon = @weather.icon
+
     @sectors = @area.sectors
     @markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
       marker.lat sector.latitude

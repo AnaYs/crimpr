@@ -67,7 +67,7 @@
 
   <div class="row bottom">
     <div class="col-xs-12">
-      <table class="table table-striped" id="user_chat" data-area_id="<%= @area.id %>">
+      <table class="table table-striped" id="user_chat" data-current_user="<%= current_user.id %>" data-area_id="<%= @area.id %>">
          <h2 style="color: #333333;">Need a buddy?</h2>
           <% @users.each_with_index do |user, index| %>
           <tr>
