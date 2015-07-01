@@ -25,7 +25,7 @@ class AreasController < ApplicationController
     end
 
     # Finding areas near the defined location
-    @areas = Area.near(location, 50)
+    @areas = Area.near(location, 100)
     @areas.each do |area|
       area.distance = (area.distance_to([@lat, @lng]) * 1.609344).round(2)
       area.bearing_to([@lat, @lng])
