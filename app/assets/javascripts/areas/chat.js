@@ -34,7 +34,6 @@ var ready = function () {
          */
 
         notify: function () {
-            console.log("You got a message!")
             // var audioplayer = $('#chatAudio')[0];
             // audioplayer.play();
 
