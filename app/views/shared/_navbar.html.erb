@@ -10,7 +10,6 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to root_path do%>
-
           <%= image_tag "crimprlogo14orangewhitemandstring.png", class:"navbar-brand"%>
 
         <% end %>
@@ -27,7 +26,7 @@
           </li>
           <li class="dropdown">
             <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>
-              <%= image_tag "climber.jpg", class: "img-avatar" %> <span class="caret"></span>
+              <%= gravatar_tag current_user.email, :size => 20, class: "img-avatar" %> <span class="caret"></span>
             <% end %>
             <ul class="dropdown-menu" role="menu">
               <li>
