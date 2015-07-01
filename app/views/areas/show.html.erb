@@ -85,7 +85,7 @@
 
 <% content_for(:before_js) do %>
   <%= javascript_tag do %>
-    var markers = <%= raw @markers.to_json %>;
+    var markers = <%= raw @sector_markers.to_json %>;
     var lat = <%= @area.latitude %>;
     var lng = <%= @area.longitude %>;
     var image_icon = "<%= image_url "climber_icon.png" %>";
@@ -110,12 +110,12 @@
             }
           };
 
-          <!-- markers.push(myPositionMarker); -->
+          markers.push(myPositionMarker);
 
         handler.buildMap({
           provider: mapOptions,
           internal: {id: 'geolocation'}}, function() {
-          var markersHandled = handler.addMarker(myPositionMarker);
+          var markersHandled = handler.addMarkers(markers);
 <!-- does not display any map nor error in Console -->
 <!-- if I write addMarkers get error Uncaught RangeError: Maximum call stack size exceeded -->
 
