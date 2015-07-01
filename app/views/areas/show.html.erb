@@ -6,6 +6,7 @@
       <div id="list">
       <p>
         <h1><%= @area.name %></h1>
+        <h3><%= @area.location %></h3>
 
         <div class="row">
           <table class="table table-striped">
@@ -23,13 +24,18 @@
 
         <div class="row card">
           <p><%= @area.description %></p>
+          <p> <strong> Access: </strong> <%= @area.access %> <br> <strong> Access time: </strong> <%= @area.access_time %></p>
         </div>
 
         <h2>Sectors</h2>
-        <div>
+        <div class = "row">
           <ul class = "list-group">
             <% @area.sectors.each do |sector|%>
-              <li class = "list-group-item"><%= link_to sector.name, area_sector_path(@area, sector) %></li>
+              <li class = "list-group-item"><strong><%= link_to sector.name, area_sector_path(@area, sector) %> </strong><span class="badge"> <%= sector.access_time %></span>
+              <span class="badge"> <%= sector.cardinal_direction %></span>
+              </li>
+              <li class = "list-group-item opacity"> <%= sector.description %></li>
+              <li class = "list-group-item opacity"> Access: <%= sector.access %></li>
             <% end %>
           </ul>
           <%= link_to new_area_sector_path(@area), class:"btn btn-default" do %>
@@ -42,6 +48,9 @@
 
     <div class="col-xs-12 col-md-5 pull-right">
       <div id="geolocation" class="card" style="width: 100%; height: 410px;"></div>
+      <div id="planning">
+      <button type="button" class="btn btn-default btn-lg centered">Plan My Trip</button>
+      </div>
     </div>
   </div>
 
