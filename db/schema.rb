@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629153201) do
+ActiveRecord::Schema.define(version: 20150701093900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20150629153201) do
     t.string   "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.text     "access"
+    t.string   "access_time"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -77,6 +79,8 @@ ActiveRecord::Schema.define(version: 20150629153201) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "location"
+    t.text     "access"
+    t.string   "access_time"
   end
 
   add_index "sectors", ["area_id"], name: "index_sectors_on_area_id", using: :btree
