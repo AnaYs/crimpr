@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Climbing Areas
 
 area_attributes = [
   {
@@ -112,6 +113,8 @@ area_attributes = [
 
 area_attributes.each { |params| Area.create!(params) }
 
+
+# Climbing Sectors respectively
 sector_attributes = [
   {
     area_id: 1,
@@ -184,3 +187,25 @@ Facing north it is the perfect crag for hot days. Especially in combination with
 ]
 
 sector_attributes.each { |params| Sector.create(params) }
+
+
+# Sample Users
+user_attributes = [
+{
+  email: "anays@mail.com",
+  password: 12345678,
+  password_confirmation: 12345678
+  },
+{
+  email: "v@hello.com",
+  password: 12345678,
+  password_confirmation: 12345678
+  },
+{
+  email: "abhoud@gmail.com",
+  password: 11111111,
+  password_confirmation: 11111111
+}
+]
+
+user_attributes.each { |params| User.create (params)}
