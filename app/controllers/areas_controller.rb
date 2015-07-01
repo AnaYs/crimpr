@@ -85,7 +85,7 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name, :description, :grades_distribution, :location, :latitude, :longitude)
+    params.require(:area).permit(:name, :description, :grades_distribution, :access, :access_time, :location, :latitude, :longitude)
   end
 
   def barometer_coordinates(area)

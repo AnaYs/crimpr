@@ -31,6 +31,6 @@ class SectorsController < ApplicationController
   end
 
   def sector_params
-    params.require(:sector).permit(:id, :name, :description, :cardinal_direction, :grading, :document)
+    params.require(:sector).permit(:id, :name, :description, :access, :access_time, :cardinal_direction, :routes_grading, :document, :location, :latitude, :longitude)
   end
 end
