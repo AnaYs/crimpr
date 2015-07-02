@@ -39,6 +39,7 @@ class AreasController < ApplicationController
 
     flash[:alert] = nil
     @weather = current_weather(@area)
+    @forecast = forecast(@area)
 
     if @weather.nil?
       flash[:alert]= "Weather conditions for the current location could not be determined. Please refresh to try again."
@@ -48,6 +49,12 @@ class AreasController < ApplicationController
       @pressure = @weather.pressure
       @sunrise = @weather.sun.rise.localtime.strftime('%I:%M %p')
       @sunset = @weather.sun.set.localtime.strftime('%I:%M %p')
+    end
+
+    if @forecast.nil?
+      flash[:alert]= "Weather forecast for the current location could not be determined. Please refresh to try again."
+    else
+      @weather_forecast = @forecast.first.low + "°C - " + @forecast.first.high + "°C"
     end
 
     @sectors = @area.sectors
@@ -79,6 +86,18 @@ class AreasController < ApplicationController
       @weather = nil
     end
     @weather
+  end
+
+
+  def forecast(area)
+    begin
+      coordinates = barometer_coordinates(area)
+      @barometer = Barometer.new(coordinates)
+      @forecast = @barometer.measure.forecast
+    rescue
+      @forecast = nil
+    end
+    @forecast
   end
 
   def set_area

@@ -9,7 +9,7 @@
         <h3><%= @area.location %></h3>
 
         <div class="row">
-          <table class="table table-striped">
+          <table class="table">
             <tbody>
               <tr>
                 <td><%= @temperature %></td>
@@ -17,6 +17,7 @@
                 <td><%= @condition %></td>
                 <td><%= image_tag "sunrise.png", class:"icon" %><%= @sunrise %> </td>
                 <td><%= image_tag "sunset.png", class:"icon" %><%= @sunset %></td>
+                <tr> <td colspan = "5">Tomorrow's forecast: <%= @forecast %></td></tr>
               </tr>
             </tbody>
           </table>
@@ -40,13 +41,14 @@
           </ul>
           <%= link_to new_area_sector_path(@area), class:"btn btn-default" do %>
             <i class="fa fa-plus"> Add sector </i>
+
           <% end %>
         </div>
         </p>
       </div>
     </div>
 
-    <div class="col-xs-12 col-md-5 pull-right">
+    <div class="col-xs-12 col-md-5 pull-right bottom">
       <div id="geolocation" class="card" style="width: 100%; height: 410px;"></div>
       <div id="planning">
       <button type="button" class="btn btn-default btn-lg centered">Plan My Trip</button>
@@ -54,23 +56,26 @@
     </div>
   </div>
 
-  <div class="row bottom">
+  <div class="row top bottom">
     <div class="col-xs-12">
     <h2 style="color: #333333;">Pictures</h2>
-    <i class="fa fa-plus"></i>
-          <% @area.pictures.sample(4) do |pic| %>
-            <div class="col-xs-12 col-sm-3 pictures">
-              <%= image_tag pic.picture.url %>
-            </div>
-          <% end %>
+          <div class="row">
+            <% @area.pictures.each do |pic| %>
+              <div class="col-xs-12 col-sm-3 pictures">
+              <%= image_tag pic.picture.url(:medium) %>
+              </div>
+            <% end %>
+          </div>
 <!-- add this to a modal/ pop-up window on clicking plus symbol next to heading -->
-          <%= form_for [@area, @area.pictures.new] do |f| %>
-          <p>
-           <%= f.label :picture %>
-           <%= f.file_field :picture %>
-          </p>
-          <p> <%= f.submit %> </p>
-          <% end %>
+          <div class="row">
+            <%= form_for [@area, @area.pictures.new] do |f| %>
+              <p>
+               <%= f.label :picture %>
+               <%= f.file_field :picture %>
+              </p>
+              <p> <%= f.submit %> </p>
+            <% end %>
+          </div>
     </div>
   </div>
 
