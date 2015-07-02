@@ -90,17 +90,8 @@
           internal: {id: 'geolocation'}}, function() {
           var markersHandled = handler.addMarkers(markers);
 
-        $.each(markers, function (index, marker) {
-         google.maps.event.addListener(marker, 'click', function(event) {
-            console.log(marker);
-            console.log(event.latLng.lat());
-            });
-        });
-
-
         handler.bounds.extendWith(markersHandled);
         handler.fitMapToBounds();
-
 
         $('.navigate').click( function () {
         directionsDisplay.setMap(handler.getMap());
@@ -111,7 +102,7 @@
 
         function calcRoute() {
           var origin      = new google.maps.LatLng(lat, lng);
-          var destination = new google.maps.LatLng(32.18229, 35.40065);
+          var destination = new google.maps.LatLng(32.332818, 35.751955);
           var request = {
               origin:      origin,
               destination: destination,

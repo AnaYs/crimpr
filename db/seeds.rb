@@ -97,8 +97,8 @@ area_attributes = [
     access: "Going to Ajloun from Jerash when reaching to Anjara instead of taking a right from the traffic light to Ajloun, keep going straight to Kufranjeh. When you reach the traffic light of Kufranja, go straight and drive for around 500m and then take the right that says Musherfeh and then down and right after the three big trees left and down to the river, cross the river and up to the left follow the road all the way up after around 1.5 km of driving the road finishes inside a farm with two small brick warehouses, from there hike for around 10 minutes north but more east. You'll find the cliffs on your right unless you're above them!",
     access_time: "15min from parking",
     location: "Ajloun, Jordan",
-    latitude: 32.18229,
-    longitude: 35.40065
+    latitude: 32.332818,
+    longitude: 35.751955
   },
   {
     name: "Tor el Ahmar, Ajloun",
@@ -165,7 +165,7 @@ sector_attributes = [
     routes_grading: {grade_4: 8, grade_5: 25, grade_6: 50, grade_7: 31, grade_8: 3}
   },
   {
-    area_id: 9,
+    area_id: 10,
     name: "Thor Motlagh (Sami's cliff)",
     description: "One of the first sport-climbing crags in the kingdom. Very nice surrounding in a calm valley.
 Some classic lines with perfect limestone",
@@ -178,7 +178,7 @@ Some classic lines with perfect limestone",
     longitude: 35.713288
   },
   {
-    area_id: 9,
+    area_id: 10,
     name: "Wahadeena, Ajloun",
     description: "Perfect rock, nice ambience and an amazing view  – this is Wahadeena. More lines are possible to the right + opposite of the small valley to the left, there are more cliffs – not that high, but with several nice lines as well.",
     access: "Pass left the stone – wall of a big square with a single tree in the middle up to the small rocks on top of the hill. Cross the plateau to the right to find a small trail between the rocks and some dolmen. Walk for some more minutes to the base of the left part of the cliff. ",
@@ -190,7 +190,7 @@ Some classic lines with perfect limestone",
     longitude: 35.713942
   },
   {
-    area_id: 9,
+    area_id: 10,
     name: "Ras Sabiq, Ajloun",
     description: "A real high and demanding piece of rock. Best limestone offers beautiful and various routes in different grades.
 Facing north it is the perfect crag for hot days. Especially in combination with Wahadeena you will have a real full day.",
