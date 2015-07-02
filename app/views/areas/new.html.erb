@@ -77,6 +77,8 @@
         $("#area_longitude").val(longitude);
       };
 
+<!-- changing coordinates based on user input -->
+
       $('#area_location').on("change", function() {
         user_input = $("#area_location").val();
             geocoder.geocode({ 'address': user_input},

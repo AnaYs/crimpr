@@ -7,17 +7,12 @@
       <div class="col-sm-6 col-md-6 padded margin">
          <h2>Where will you climb next?</h2>
 
-<!-- search form for location -->
-            <%= form_tag(areas_path, method: "get", class: "navbar-form", id: "search-form") do %>
-              <%= text_field_tag(:query)%>
-              <%= submit_tag("Find") %>
-            <% end %>
-
 <!-- search with Geolocation -->
-            <form id="geolocation" action="" >
+            <form id="geolocation" action="/areas" >
+            <input type="text" id="query" name="query" value="" size="40"/>
             <input type="hidden" id="lat" name="lat" value="">
             <input type="hidden" id="lng" name="lng" value="">
-            <input type="Submit" name="Submit" class='btn btn-default' value='Search near me' style='height: 26px;line-height: 12px;'/>
+            <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' style='height: 26px;line-height: 12px;'/>
             </form>
 
       </div>
@@ -28,21 +23,47 @@
     <%= javascript_tag do %>
 
       $(document).ready(function(){
-
+       var geocoder = new google.maps.Geocoder();
+<!-- Hidden form fields with geolocation coordinates -->
         if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position){
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
+            var latlng = new google.maps.LatLng(lat,lng);
+
+              geocoder.geocode({
+                  'location': latlng
+              }, function(responses) {
+            $("#query").val(responses[0].formatted_address)
+            });
+
 
             $("#lat").val(lat);
             $("#lng").val(lng);
-            $("#geolocation").attr('action', '/areas');
           })
         }
         else {
             x.innerHTML = "Geolocation is not supported by this browser.";
           }
+<!-- If user customizes search input, calculate new coordinates for hidden fields -->
+        $("#query").on("change", function() {
+        user_input = $("#query").val();
+
+          geocoder.geocode({ 'address': user_input},
+              function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  var latitude = results[0].geometry.location["A"];
+                  var longitude = results[0].geometry.location["F"];
+                  $("#lat").val(latitude);
+                  $("#lng").val(longitude);
+              }
+              else {
+                  alert("Geocode was not successful for the following reason: " + status);
+              }
+          });
         });
+
+      });
     <% end %>
   <% end %>
 

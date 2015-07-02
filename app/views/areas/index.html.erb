@@ -7,6 +7,7 @@
   <!-- List of climbing areas based on search -->
     <p>
     <h1>Climbing Areas</h1>
+    <p>Searched for: <%= @location %></p>
         <% @areas.each do |area| %>
           <ul class = "list-group">
             <li class = "list-group-item"><a href= "<%= area_path(area) %>"> <%= area.name %></a>
@@ -110,7 +111,7 @@
 
         function calcRoute() {
           var origin      = new google.maps.LatLng(lat, lng);
-          var destination = new google.maps.LatLng(50.223735, 4.893465);
+          var destination = new google.maps.LatLng(32.18229, 35.40065);
           var request = {
               origin:      origin,
               destination: destination,

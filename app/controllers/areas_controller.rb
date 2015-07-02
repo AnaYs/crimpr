@@ -5,14 +5,8 @@ class AreasController < ApplicationController
 
   def index
     # user can search based on geolocation or on a specified search location
-    if params[:query]
-      # latitude and longitude for myPositionMarker
-        coords = Geocoder.coordinates(params[:query])
-          @lat = coords[0]
-          @lng = coords[1]
-      location = [@lat, @lng]
-    elsif params[:lat]
-      location = [params[:lat], params[:lng]]
+    if params[:lat]
+      @location = [params[:lat], params[:lng]]
         @lat = params[:lat]
         @lng = params[:lng]
     else
@@ -21,11 +15,11 @@ class AreasController < ApplicationController
         coords = Geocoder.coordinates(location)
           @lat = coords[0]
           @lng = coords[1]
-      location = [@lat, @lng]
+      @location = [@lat, @lng]
     end
 
     # Finding areas near the defined location
-    @areas = Area.near(location, 100)
+    @areas = Area.near(@location, 100)
     @areas.each do |area|
       area.distance = (area.distance_to([@lat, @lng]) * 1.609344).round(2)
       area.bearing_to([@lat, @lng])
@@ -43,13 +37,18 @@ class AreasController < ApplicationController
   def show
     @users = User.all.where.not(id: current_user.id)
 
+    flash[:alert] = nil
     @weather = current_weather(@area)
-    @temperature = @weather.temperature
-    @condition = @weather.condition
-    @pressure = @weather.pressure
-    @sunrise = @weather.sun.rise.strftime('%I:%M %p')
-    @sunset = @weather.sun.set.strftime('%I:%M %p')
-    @icon = @weather.icon
+
+    if @weather.nil?
+      flash[:alert]= "Weather conditions for the current location could not be determined. Please refresh to try again."
+    else
+      @temperature = @weather.temperature
+      @condition = @weather.condition
+      @pressure = @weather.pressure
+      @sunrise = @weather.sun.rise.localtime.strftime('%I:%M %p')
+      @sunset = @weather.sun.set.localtime.strftime('%I:%M %p')
+    end
 
     @sectors = @area.sectors
     @sector_markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
@@ -72,9 +71,14 @@ class AreasController < ApplicationController
   private
 
   def current_weather(area)
-    coordinates = barometer_coordinates(area)
-    @barometer = Barometer.new(coordinates)
-    @weather = @barometer.measure.current
+    begin
+      coordinates = barometer_coordinates(area)
+      @barometer = Barometer.new(coordinates)
+      @weather = @barometer.measure.current
+    rescue
+      @weather = nil
+    end
+    @weather
   end
 
   def set_area
