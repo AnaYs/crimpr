@@ -4,6 +4,7 @@
 
   <div class="col-xs-12 col-md-5 pull-left">
   <div id="list">
+  <!-- List of climbing areas based on search -->
     <p>
     <h1>Climbing Areas</h1>
         <% @areas.each do |area| %>
@@ -15,6 +16,7 @@
           </ul>
         <% end %>
 
+  <!-- Filter dropdown - not working yet -->
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Sort by
@@ -31,11 +33,24 @@
   </div>
   </div>
 
+
   <div class="col-xs-12 col-md-7 pull-right">
-    <div id="geolocation"></div>
+
+    <!-- Map with (geo)location tagged -->
+    <div class="row">
+      <div id="geolocation"></div>
+    </div>
+<!-- search form for new location -->
+    <div class="row">
+      <%= form_tag(areas_path, method: "get", class: "navbar-form", id: "search-form") do %>
+        <%= text_field_tag(:query)%>
+        <%= submit_tag("Find") %>
+      <% end %>
+    </div>
   </div>
 </div>
 
+      <!-- JS for map -->
 <% content_for(:before_js) do %>
   <%= javascript_tag do %>
     var markers = <%= raw @markers.to_json %>;
@@ -110,6 +125,7 @@
 
         calcRoute();
       });
+    });
     <% end %>
   <% end %>
 </div>
