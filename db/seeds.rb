@@ -73,9 +73,18 @@ area_attributes = [
     latitude: 32.016509,
     longitude: 35.763133
   },
+   {
+    name: "Abu Mahmouds cliff, Jerash",
+    description: "Easy to hard climbs on beautiful limestone with potential for development of greater difficulties.",
+    access: "Taking the road that goes from Jerash to Ajloun when arriving from Amman, after reaching the village of Sakib up hell youll cross a pedestrian bridg after that you take the road on your left that goes down to Ghor and Rajib you drive for like 6km after crossing Sufsafa village you will see the cliff on your left grey and red super nice.",
+    access_time: "10min from parking",
+    location: "Jerash, Jordan",
+    latitude: 32.293321,
+    longitude: 35.829768
+  },
   {
     name: "Gorf Antar, Wadi Rum",
-    description: "http://climbingjordan.com/topos/rum/37-rum2",
+    description: "Climbing in Wadi Rum desert is one of the most amazing experiences of outdoor climbing in Jordan. Gorf Antar is one of the most developed sports climbing areas with sectors close to each other. It is recommended to plan stay for a longer trip to benefit from the travel to this remote place.",
     access: "If you are coming from Amman and want to go by bus as directly as possible to Wadi Rum, then rather than continuing to Aqaba, you would do better to get down at the Rashidiya Junction.",
     access_time: "1 hour from Rum Village",
     location: "Wadi Rum, Jordan",
@@ -84,12 +93,21 @@ area_attributes = [
   },
    {
     name: "Ajloun south",
-    description: "http://climbingjordan.com/topos/rum/37-rum2",
+    description: "Well developed area with various sectors of easy to intermediate grading. Sectors are slightly far apart.",
     access: "Going to Ajloun from Jerash when reaching to Anjara instead of taking a right from the traffic light to Ajloun, keep going straight to Kufranjeh. When you reach the traffic light of Kufranja, go straight and drive for around 500m and then take the right that says Musherfeh and then down and right after the three big trees left and down to the river, cross the river and up to the left follow the road all the way up after around 1.5 km of driving the road finishes inside a farm with two small brick warehouses, from there hike for around 10 minutes north but more east. You'll find the cliffs on your right unless you're above them!",
-    access_time: "20 - 25 min from parking",
+    access_time: "15min from parking",
     location: "Ajloun, Jordan",
     latitude: 32.18229,
     longitude: 35.40065
+  },
+  {
+    name: "Tor el Ahmar, Ajloun",
+    description: "Newly developed area with 6 bolted and 3 trad climbs, as well as 10 heads. Great potential for further development.",
+    access: "Taking the road that connect ajloun with irbid arrive the traffic light of zubia and go west towards zubia after 3.10km take west again for 3.78km and take the dirt road on your left for about 200m and start the hike south or east to be on top of the cliffs.",
+    access_time: "25 min from parking",
+    location: "Ajloun, Jordan",
+    latitude: 32.350896,
+    longitude: 35.748033
   },
   {
     name: "Le Suet",

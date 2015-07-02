@@ -1,18 +1,36 @@
-<h1><%= @sector.name %></h1>
+<div class="container">
 
-<p><%= @sector.description %></p>
+  <div class="row">
+    <div class="col-xs-12" id="list">
 
-<%= link_to "Download", "/#{@area.id}_#{@sector.id}.pdf", class:"btn btn-default" %>
+      <h1><%= @sector.name %></h1>
+      <h3><%= @sector.location %></h3>
 
-<h3>Upload a guide for this sector</h3>
-<%= form_for([@area, @sector], html: { multipart: true }) do |f| %>
-  <p>
-    <%= f.label :document %>
-    <%= f.file_field :document %>
-  </p>
-  <p><%= f.submit %></p>
-<% end %>
+      <div class="card">
+        <p><%= @sector.description %></p>
+        <p> <strong> Access: </strong> <%= @sector.access %> <br> <strong> Access time: </strong> <%= @sector.access_time %></p>
+      </div>
 
 
-<%= link_to @area.name, area_path(@area), class:"btn btn-default" %>
-<%= link_to "Home", areas_path, class:"btn btn-default" %>
+
+      <%= link_to "Download guide", "/#{@area.id}_#{@sector.id}.pdf", class:"btn btn-default" %>
+
+      <div class="card">
+        <h3>Upload a guide for this sector</h3>
+        <%= form_for([@area, @sector], html: { multipart: true }) do |f| %>
+          <p>
+            <%= f.label :document %>
+            <%= f.file_field :document %>
+          </p>
+          <p><%= f.submit %></p>
+        <% end %>
+      </div>
+
+
+      <%= link_to "<< Back to #{@area.name}", area_path(@area), class:"btn btn-default" %>
+      <%= link_to "Home", areas_path, class:"btn btn-default" %>
+
+    </div>
+  </div>
+</div>
+
