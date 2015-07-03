@@ -58,10 +58,12 @@
 
 .chatboxcontent .avatar {
     width: 40px;
+    height: 40px;
     position: relative;
 }
 
 .chatboxcontent .avatar img {
+    height: 100%;
     display: block;
     width: 100%;
 }
