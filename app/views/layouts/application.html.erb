@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
 </head>
-<body>
+<body id="<%= on_homepage? ? 'homepage' : 'non-homepage' %>">
 
   <%= render "shared/navbar" %>
 

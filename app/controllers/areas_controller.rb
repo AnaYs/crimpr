@@ -61,7 +61,7 @@ class AreasController < ApplicationController
     @sector_markers = Gmaps4rails.build_markers(@sectors) do |sector, marker|
       marker.lat sector.latitude
       marker.lng sector.longitude
-      marker.infowindow sector.name
+      marker.infowindow render_to_string(partial: "/areas/infowindow_sector", locals: { object: sector})
       marker.json({ sector_id: sector.id })
     end
   end

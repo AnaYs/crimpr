@@ -6,14 +6,18 @@
  * ------------------------------------- */
 
 body {
-    padding-top: 58px;
-    padding-bottom: 100px;
-    background-color: #E6E6E6;
-    height: 100%;
+  padding-top: 58px;
+  background-color: #E6E6E6;
+  height: 100%;
 }
+
+body#non-homepage {
+  padding-bottom: 100px;
+}
+
 .container {
-    height: auto;
-    width: 90%;
+  height: auto;
+  width: 90%;
 }
 
 .bottom {

@@ -1,5 +1,5 @@
 <!-- Banner -->
-<div id="banner">
+<div id="banner" style="overflow: hidden">
 
 <!-- Header -->
   <div class="container">
@@ -8,12 +8,18 @@
          <h2>Where will you climb next?</h2>
 
 <!-- search with Geolocation -->
-            <form id="geolocation" action="/areas" >
-            <input type="text" id="query" name="query" value="" size="40"/>
-            <input type="hidden" id="lat" name="lat" value="">
-            <input type="hidden" id="lng" name="lng" value="">
-            <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' style='height: 26px;line-height: 12px;'/>
+            <form id="geolocation" action="/areas" class="row" >
+              <input type="hidden" id="lat" name="lat" value="">
+              <input type="hidden" id="lng" name="lng" value="">
+              <div class="input-group col-sm-9">
+                <input type="text" id="query" name="query" value="" class="form-control" />
+                <span class="input-group-btn">
+                  <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' class="btn btn-default" />
+                </span>
+              </div>
             </form>
+
+
 
       </div>
     </div>
@@ -45,11 +51,22 @@
         else {
             x.innerHTML = "Geolocation is not supported by this browser.";
           }
-<!-- If user customizes search input, calculate new coordinates for hidden fields -->
-        $("#query").on("change", function() {
-        user_input = $("#query").val();
 
-          geocoder.geocode({ 'address': user_input},
+
+        var delay = (function(){
+          var timer = 0;
+          return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+          };
+        })();
+
+<!-- If user customizes search input, calculate new coordinates for hidden fields -->
+        $("#query").on("keyup", function() {
+          delay(function(){
+            user_input = $("#query").val();
+
+            geocoder.geocode({ 'address': user_input},
               function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                   var latitude = results[0].geometry.location["A"];
@@ -60,7 +77,8 @@
               else {
                   alert("Geocode was not successful for the following reason: " + status);
               }
-          });
+            });
+          }, 2000 );
         });
 
       });
