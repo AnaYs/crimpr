@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :conversations, :foreign_key => :sender_id
 
+  validates_format_of :email, :with => Devise.email_regexp
+
   def name
     email
   end
