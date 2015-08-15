@@ -5,9 +5,10 @@
   -o-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
-  background-position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
   height: 800px;
-  margin-top: -75px;
+  margin-top: -$navbar-height;
 }
 
 // .sign-up-text p span{

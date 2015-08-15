@@ -78,15 +78,14 @@
       };
 
 <!-- changing coordinates based on user input -->
-
-      $('#area_location').on("change", function() {
+      $('#area_location').on("autocomplete", function() {
         user_input = $("#area_location").val();
-          console.log(user_input);
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
+              console.log(results[0])
                 if (status == google.maps.GeocoderStatus.OK) {
-                  var latitude = results[0].geometry.location["A"];
-                  var longitude = results[0].geometry.location["F"];
+                  var latitude = results[0].geometry.location["G"];
+                  var longitude = results[0].geometry.location["K"];
                   handler.removeMarker(marker);
                   marker = handler.addMarker({
                       lat: latitude,
