@@ -64,8 +64,8 @@
 
 <!-- function "handleDragEnd" fills coordinates of marker into form fields -->
       handler.map.handleDragEnd = function(position) {
-        var latitude = position["A"];
-        var longitude = position["F"];
+        var latitude = position["G"];
+        var longitude = position["K"];
         var geocoder = new google.maps.Geocoder();
           geocoder.geocode({
             latLng: position
@@ -81,6 +81,7 @@
 
       $('#area_location').on("change", function() {
         user_input = $("#area_location").val();
+          console.log(user_input);
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -97,7 +98,7 @@
                   $("#area_longitude").val(longitude);
                   handler.map.centerOn(marker);
 
-                  <!-- add event "handleDragEnd" on draggin of marker -->
+                  <!-- add event "handleDragEnd" on dragging of marker -->
                   google.maps.event.addListener(marker.serviceObject, 'dragend', function() { handler.map.handleDragEnd(this.getPosition()) });
                 }
                 else {
