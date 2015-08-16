@@ -78,13 +78,11 @@
       };
 
 <!-- changing coordinates based on user input -->
-      $('#area_location').on("select", function() {
-        user_input = $("#area_location").val();
-        console.log($("#area_location").val());
-        console.log(user_input);
+      $('#area_location').on("keyup", function() {
+        delay(function() {
+          user_input = $("#area_location").val();
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
-              console.log(results[0])
                 if (status == google.maps.GeocoderStatus.OK) {
                   var latitude = results[0].geometry.location["G"];
                   var longitude = results[0].geometry.location["K"];
@@ -107,6 +105,7 @@
                 }
               }
             );
+        }, 250);
       });
 
     });
