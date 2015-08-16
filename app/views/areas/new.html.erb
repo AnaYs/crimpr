@@ -78,8 +78,10 @@
       };
 
 <!-- changing coordinates based on user input -->
-      $('#area_location').on("autocomplete", function() {
+      $('#area_location').on("select", function() {
         user_input = $("#area_location").val();
+        console.log($("#area_location").val());
+        console.log(user_input);
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
               console.log(results[0])
