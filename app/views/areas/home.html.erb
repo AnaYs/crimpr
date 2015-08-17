@@ -65,9 +65,7 @@
 
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
-                console.log("geocoding kicks in")
                 if (status == google.maps.GeocoderStatus.OK) {
-                console.log(results[0])
                   var latitude = results[0].geometry.location["G"];
                   var longitude = results[0].geometry.location["K"];
                   $("#lat").val(latitude);

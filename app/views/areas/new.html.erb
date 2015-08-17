@@ -78,6 +78,14 @@
       };
 
 <!-- changing coordinates based on user input -->
+      var delay = (function(){
+          var timer = 0;
+          return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+          };
+        })();
+
       $('#area_location').on("keyup", function() {
         delay(function() {
           user_input = $("#area_location").val();
