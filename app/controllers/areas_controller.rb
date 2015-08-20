@@ -75,7 +75,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to area_path @area, notice: 'This climbing area was successfully added to our database.' }
+        format.html { redirect_to new_area_sector_path(@area), notice: 'This climbing area was successfully added to our database.' }
       else
         format.html { render :new }
       end
