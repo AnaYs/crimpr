@@ -5,7 +5,7 @@ class AreasController < ApplicationController
 
   def index
     # user can search based on geolocation or on a specified search location
-    if params[:lat]
+    if params[:lat] && params[:lat] != ""
       @location = [params[:lat], params[:lng]]
         @lat = params[:lat]
         @lng = params[:lng]
