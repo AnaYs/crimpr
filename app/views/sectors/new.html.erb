@@ -11,14 +11,13 @@
           <%= f.input :name, required: true, autofocus: true %>
           <%= f.input :description, required: true, hint: ("Give a brief description of the type of climbing in this sector") %>
           <%= f.input :location, required: true, hint: ("Drag the marker on the map to accurately locate the sector location") %>
+          <div id="geolocation"></div>
           <%= f.input :latitude, required: true %>
           <%= f.input :longitude, required: true %>
         </div>
 
-        <div id="geolocation" style="width: 100%; height: 600px;"></div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Add" %>
+        <div class="form-actions text-center">
+          <%= f.button :submit, " add ", class: "btn-danger" %>
         </div>
       <% end %>
 
