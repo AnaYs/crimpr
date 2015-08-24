@@ -101,13 +101,10 @@
       $("#query").on("keyup", function() {
           delay(function(){
             user_input = $("#query").val();
-            console.log(user_input);
 
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                console.log(results);
-                  var latitude = results[0].geometry.location["G"];
                   var longitude = results[0].geometry.location["K"];
                   $("#lat").val(latitude);
                   $("#lng").val(longitude);

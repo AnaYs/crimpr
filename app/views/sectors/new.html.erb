@@ -71,7 +71,6 @@
           geocoder.geocode({
             latLng: position
           }, function(responses) {
-          console.log(responses[0]);
         $("#sector_location").val(responses[0].formatted_address)
         });
 
