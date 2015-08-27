@@ -71,8 +71,12 @@ class AreasController < ApplicationController
   end
 
   def create
-    @area = Area.create(area_params)
-    redirect_to area_path(@area)
+    @area = Area.new(area_params)
+    if @area.save
+      redirect_to new_area_sector_path(@area), notice: 'This climbing area was successfully added to our database.'
+    else
+      render :new
+    end
   end
 
   private

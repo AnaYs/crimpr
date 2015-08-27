@@ -1,34 +1,30 @@
 <!-- Banner -->
 <div id="banner" style="overflow: hidden">
-
-<!-- Header -->
+  <!-- Header -->
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-6 padded margin">
-         <h2>Where will you climb next?</h2>
-
-<!-- search with Geolocation -->
-            <form id="geolocation" action="/areas" class="row" >
-              <input type="hidden" id="lat" name="lat" value="">
-              <input type="hidden" id="lng" name="lng" value="">
-              <div class="input-group col-sm-9">
-                <input type="text" id="query" name="query" value="" class="form-control" />
-                <span class="input-group-btn">
-                  <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' class="btn btn-default" />
-                </span>
-              </div>
-            </form>
+        <h2>Where will you climb next?</h2>
+        <!-- search with Geolocation -->
+        <form id="geolocation" action="/areas" class="row" >
+          <input type="hidden" id="lat" name="lat" value="">
+          <input type="hidden" id="lng" name="lng" value="">
+          <div class="input-group col-sm-9">
+            <input type="text" id="query" name="query" value="" class="form-control" />
+            <span class="input-group-btn">
+              <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' class="btn btn-default" />
+            </span>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
   <% content_for(:after_js) do %>
     <%= javascript_tag do %>
-
       $(document).ready(function(){
        var geocoder = new google.maps.Geocoder();
-<!-- Hidden form fields with geolocation coordinates -->
-        if(navigator.geolocation) {
+      <!-- Hidden form fields with geolocation coordinates -->
+      if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position){
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
@@ -49,7 +45,6 @@
             x.innerHTML = "Geolocation is not supported by this browser.";
           }
 
-
         var delay = (function(){
           var timer = 0;
           return function(callback, ms){
@@ -58,30 +53,28 @@
           };
         })();
 
-<!-- If user customizes search input, calculate new coordinates for hidden fields -->
-        $("#query").on("keyup", function() {
-          delay(function(){
-            user_input = $("#query").val();
+      <!-- If user customizes search input, calculate new coordinates for hidden fields -->
+      $("#query").on("keyup", function() {
+        delay(function(){
+          user_input = $("#query").val();
 
-            geocoder.geocode({ 'address': user_input},
-              function(results, status) {
-                console.log("geocoding kicks in")
-                if (status == google.maps.GeocoderStatus.OK) {
-                console.log(results[0])
-                  var latitude = results[0].geometry.location["G"];
-                  var longitude = results[0].geometry.location["K"];
-                  $("#lat").val(latitude);
-                  $("#lng").val(longitude);
+          geocoder.geocode({ 'address': user_input},
+            function(results, status)   {
+              if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location["G"];
+                var longitude = results[0].geometry.location["K"];
+                $("#lat").val(latitude);
+                $("#lng").val(longitude);
               }
               else {
-                  alert("Geocode was not successful for the following reason: " + status);
+                alert("Geocode was not successful for the following reason: " + status);
               }
             });
-          }, 250);
-        });
 
+        }, 350);
       });
+    });
+
     <% end %>
   <% end %>
-
 </div>

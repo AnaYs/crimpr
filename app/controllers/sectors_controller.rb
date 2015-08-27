@@ -14,8 +14,12 @@ class SectorsController < ApplicationController
   end
 
   def create
-    @sector = @area.sectors.create(sector_params)
-    redirect_to area_path(@area)
+    @sector = @area.sectors.build(sector_params)
+    if @sector.save
+      redirect_to area_path(@area), notice:"Climbing sector added to #{@area.name}"
+    else
+      render :new
+    end
   end
 
   def update

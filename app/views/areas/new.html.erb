@@ -19,7 +19,7 @@
 
         <br>
         <div class="form-actions">
-          <%= f.button :submit, "Add" %>
+          <%= f.button :submit, " Add ", class: "btn-danger" %>
         </div>
       <% end %>
   </div>
@@ -64,8 +64,8 @@
 
 <!-- function "handleDragEnd" fills coordinates of marker into form fields -->
       handler.map.handleDragEnd = function(position) {
-        var latitude = position["A"];
-        var longitude = position["F"];
+        var latitude = position["G"];
+        var longitude = position["K"];
         var geocoder = new google.maps.Geocoder();
           geocoder.geocode({
             latLng: position
@@ -78,14 +78,22 @@
       };
 
 <!-- changing coordinates based on user input -->
+      var delay = (function(){
+          var timer = 0;
+          return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+          };
+        })();
 
-      $('#area_location').on("change", function() {
-        user_input = $("#area_location").val();
+      $('#area_location').on("keyup", function() {
+        delay(function() {
+          user_input = $("#area_location").val();
             geocoder.geocode({ 'address': user_input},
               function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                  var latitude = results[0].geometry.location["A"];
-                  var longitude = results[0].geometry.location["F"];
+                  var latitude = results[0].geometry.location["G"];
+                  var longitude = results[0].geometry.location["K"];
                   handler.removeMarker(marker);
                   marker = handler.addMarker({
                       lat: latitude,
@@ -97,7 +105,7 @@
                   $("#area_longitude").val(longitude);
                   handler.map.centerOn(marker);
 
-                  <!-- add event "handleDragEnd" on draggin of marker -->
+                  <!-- add event "handleDragEnd" on dragging of marker -->
                   google.maps.event.addListener(marker.serviceObject, 'dragend', function() { handler.map.handleDragEnd(this.getPosition()) });
                 }
                 else {
@@ -105,6 +113,7 @@
                 }
               }
             );
+        }, 250);
       });
 
     });

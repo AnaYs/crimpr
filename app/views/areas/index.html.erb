@@ -1,24 +1,21 @@
 <div class="container">
-
-<div class="row row-centered">
-
-  <div class="col-xs-12 col-md-5 pull-left">
-  <div id="list">
-  <!-- List of climbing areas based on search -->
-    <p>
-    <h1>Climbing Areas</h1>
-        <% @areas.each do |area| %>
-          <ul class = "list-group">
-            <li class = "list-group-item"><a href= "<%= area_path(area) %>"> <strong><%= area.name %> </strong></a>
-              <!-- <span class="badge btn btn-default traveltime"></span> -->
-              <span class="badge btn btn-default navigate"><%= area.distance %>km</span>
-              <p>Access time: <%= area.access_time %></p>
-            </li>
-          </ul>
-        <% end %>
-
-  <!-- Filter dropdown - not working yet -->
-    <div class="dropdown">
+  <div class="row row-centered">
+    <div class="col-xs-12 col-md-5 pull-left">
+      <div id="list">
+        <!-- List of climbing areas based on search -->
+        <p>
+          <h1>Climbing Areas</h1>
+          <% @areas.each do |area| %>
+            <ul class = "list-group">
+              <li class = "list-group-item"><a href= "<%= area_path(area) %>"> <strong><%= area.name %> </strong></a>
+                <!-- <span class="badge btn btn-default traveltime"></span> -->
+                <span class="badge btn btn-default navigate"><%= area.distance %>km</span>
+                <p>Access time: <%= area.access_time %></p>
+              </li>
+            </ul>
+          <% end %>
+          <!-- Filter dropdown - not working yet -->
+          <!--   <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Sort by
         <span class="caret"></span>
@@ -29,45 +26,45 @@
         <li><a href="#">Difficulty of Routes</a></li>
         <li><a href="#">Sector Orientation</a></li>
       </ul>
+    </div> -->
+        </p>
+      </div>
     </div>
-    </p>
-  </div>
-  </div>
-
-
-  <div class="col-xs-12 col-md-7 pull-right">
-
-    <!-- Map with (geo)location tagged -->
-    <div class="row">
-      <div id="geolocation"></div>
+    <div class="col-xs-12 col-md-7 pull-right">
+      <!-- Map with (geo)location tagged -->
+      <div class="row">
+        <div id="geolocation"></div>
+      </div>
+      <!-- search form for new location -->
+      <div class="row">
+        <form id="geolocation" action="/areas" class="row" >
+          <input type="hidden" id="lat" name="lat" value="">
+          <input type="hidden" id="lng" name="lng" value="">
+          <div class="input-group">
+            <input type="text" id="query" name="query" value="" class="form-control" />
+            <span class="input-group-btn">
+              <input type="Submit" name="Submit" class='btn btn-default' value='Climb here!' class="btn btn-default" />
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
-<!-- search form for new location -->
-    <div class="row">
-      <%= form_tag(areas_path, method: "get", class: "navbar-form", id: "search-form") do %>
-        <%= text_field_tag(:query)%>
-        <%= submit_tag("Find") %>
-      <% end %>
-    </div>
   </div>
-</div>
-
-      <!-- JS for map -->
-<% content_for(:before_js) do %>
-  <%= javascript_tag do %>
-    var markers = <%= raw @markers.to_json %>;
+  <!-- JS for map -->
+  <% content_for(:before_js) do %>
+    <%= javascript_tag do %>
+      var markers = <%= raw @markers.to_json %>;
 
     var lat = <%= @lat %>;
     var lng = <%= @lng %>;
 
-
-
     var image_icon = "<%= image_url "climber_icon.png" %>";
   <% end %>
-<% end %>
-
-<% content_for(:after_js) do %>
-<%= javascript_tag do %>
+  <% end %>
+  <% content_for(:after_js) do %>
+    <%= javascript_tag do %>
       $(document).on('ready', function() {
+        var geocoder = new google.maps.Geocoder();
         var mapOptions = { mapTypeId: google.maps.MapTypeId.SATELLITE };
         var handler = Gmaps.build('Google');
 
@@ -82,8 +79,7 @@
             }
           };
 
-
-          markers.push(myPositionMarker);
+        markers.push(myPositionMarker);
 
         handler.buildMap({
           provider: mapOptions,
@@ -93,7 +89,36 @@
         handler.bounds.extendWith(markersHandled);
         handler.fitMapToBounds();
 
-        $('.navigate').click( function () {
+        <!-- If user customizes search input, calculate new coordinates for hidden fields -->
+        var delay = (function(){
+          var timer = 0;
+          return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+          };
+        })();
+
+      $("#query").on("keyup", function() {
+          delay(function(){
+            user_input = $("#query").val();
+
+            geocoder.geocode({ 'address': user_input},
+              function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  var latitude = results[0].geometry.location["G"];
+                  var longitude = results[0].geometry.location["K"];
+                  $("#lat").val(latitude);
+                  $("#lng").val(longitude);
+              }
+              else {
+                  alert("Geocode was not successful for the following reason: " + status);
+              }
+            });
+          }, 350);
+        });
+
+    <!-- displaying directions on distance-click -->
+      $('.navigate').click( function () {
         directionsDisplay.setMap(handler.getMap());
         });
 
@@ -121,5 +146,3 @@
     <% end %>
   <% end %>
 </div>
-
-
