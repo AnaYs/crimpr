@@ -12,10 +12,13 @@ class AreasController < ApplicationController
     else
       location = "Brussels"
       # latitude and longitude for myPositionMarker
+      begin
         coords = Geocoder.coordinates(location)
           @lat = coords[0]
           @lng = coords[1]
       @location = [@lat, @lng]
+    rescue => e
+    end
     end
 
     # Finding areas near the defined location
@@ -72,13 +75,10 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-
-    respond_to do |format|
-      if @area.save
-        format.html { redirect_to new_area_sector_path(@area), notice: 'This climbing area was successfully added to our database.' }
-      else
-        format.html { render :new }
-      end
+    if @area.save
+      redirect_to new_area_sector_path(@area), notice: 'This climbing area was successfully added to our database.'
+    else
+      render :new
     end
   end
 

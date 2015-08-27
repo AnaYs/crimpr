@@ -15,13 +15,10 @@ class SectorsController < ApplicationController
 
   def create
     @sector = @area.sectors.build(sector_params)
-
-    respond_to do |format|
-      if @sector.save
-        format.html { redirect_to area_path(@area), notice:"Climbing sector added to #{@area.name}" }
-      else
-        format.html { render :new }
-      end
+    if @sector.save
+      redirect_to area_path(@area), notice:"Climbing sector added to #{@area.name}"
+    else
+      render :new
     end
   end
 

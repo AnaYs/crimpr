@@ -67,8 +67,7 @@
                   $("#lng").val(longitude);
               }
               else {
-                  alert("Geocode was not successful for the following reason: " + status);
-              }
+                  alert("<%= notice: 'Geocode was not successful for the following reason: ' + status %>");
             });
           }, 350);
         });
