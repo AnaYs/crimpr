@@ -5,20 +5,17 @@ class AreasController < ApplicationController
 
   def index
     # user can search based on geolocation or on a specified search location
-    if params[:lat] && params[:lat] != ""
+    if params[:lat]
       @location = [params[:lat], params[:lng]]
         @lat = params[:lat]
         @lng = params[:lng]
     else
       location = "Brussels"
       # latitude and longitude for myPositionMarker
-      begin
         coords = Geocoder.coordinates(location)
           @lat = coords[0]
           @lng = coords[1]
       @location = [@lat, @lng]
-    rescue => e
-    end
     end
 
     # Finding areas near the defined location

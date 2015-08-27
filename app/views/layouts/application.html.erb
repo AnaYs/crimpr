@@ -21,11 +21,12 @@
     <%= yield %>
 
   <!-- browser API key for autocomplete -->
+  <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyCZWqowjI9bxoKbJwdYCZwxyMggEgzpQEE" %>
 
   <%= javascript_include_tag "https://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js" %>
   <%= javascript_include_tag "https://google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js" %>
-  <%= javascript_include_tag "application" %>
+
 
   <%= yield(:after_js) %>
 
