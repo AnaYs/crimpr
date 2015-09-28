@@ -116,32 +116,7 @@
             });
           }, 350);
         });
-
-    <!-- displaying directions on distance-click -->
-<!--       $('.navigate').click( function () {
-        directionsDisplay.setMap(handler.getMap());
-        });
-
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        var directionsService = new google.maps.DirectionsService();
-
-        function calcRoute() {
-          var origin      = new google.maps.LatLng(lat, lng);
-          var destination = new google.maps.LatLng(32.332818, 35.751955);
-          var request = {
-              origin:      origin,
-              destination: destination,
-              travelMode:  google.maps.TravelMode.DRIVING
-          };
-          directionsService.route(request, function(response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(response);
-            }
-          });
-        }
-
-        calcRoute();
-      }); -->
+      });
     });
     <% end %>
   <% end %>
