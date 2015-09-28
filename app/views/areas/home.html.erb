@@ -61,8 +61,8 @@
           geocoder.geocode({ 'address': user_input},
             function(results, status)   {
               if (status == google.maps.GeocoderStatus.OK) {
-                var latitude = results[0].geometry.location["G"];
-                var longitude = results[0].geometry.location["K"];
+                var latitude = results[0].geometry.location["H"];
+                var longitude = results[0].geometry.location["L"];
                 $("#lat").val(latitude);
                 $("#lng").val(longitude);
               }
