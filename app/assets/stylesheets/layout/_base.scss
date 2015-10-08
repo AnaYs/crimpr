@@ -9,6 +9,7 @@ body {
   padding-top: $navbar-height;
   background-color: #E6E6E6;
   height: 100%;
+  overflow: hidden;
 }
 
 body#non-homepage {
