@@ -9,11 +9,13 @@ body {
   padding-top: $navbar-height;
   background-color: #E6E6E6;
   height: 100%;
+  overflow: hidden;
 }
 
 body#non-homepage {
   padding-top: 2*$navbar-height;
   padding-bottom: 100px;
+  overflow: scroll;
 }
 
 .container {
