@@ -1,20 +1,20 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show]
 
-  skip_before_action :authenticate_user!, only: [:index, :home]
+  skip_before_action :authenticate_user!
 
   def index
     # user can search based on geolocation or on a specified search location
-    if params[:lat]
+    if !params[:lat].empty?
       @location = [params[:lat], params[:lng]]
         @lat = params[:lat]
         @lng = params[:lng]
     else
-      location = "Brussels"
+      # location = "Brussels"
       # latitude and longitude for myPositionMarker
-        coords = Geocoder.coordinates(location)
-          @lat = coords[0]
-          @lng = coords[1]
+        # coords = Geocoder.coordinates(location)
+          @lat = 50.8503396
+          @lng = 4.3517103
       @location = [@lat, @lng]
     end
 
