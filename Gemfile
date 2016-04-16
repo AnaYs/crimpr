@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
-ruby '2.2.2'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -34,7 +33,9 @@ gem "geocoder"
 
 #Google Maps Gem
 gem "gmaps4rails"
-gem "rails-assets-underscore"
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 #Weather API
 gem 'barometer'
