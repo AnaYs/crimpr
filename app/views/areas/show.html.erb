@@ -83,16 +83,16 @@
 
   <div class="row bottom">
     <div class="col-xs-12">
-      <table class="table table-striped" id="user_chat" data-current_user="<%= current_user.id %>" data-area_id="<%= @area.id %>">
+      <table class="table table-striped" id="user_chat" data-current_user="<%= current_user.id if current_user %>" data-area_id="<%= @area.id %>">
          <h2 style="color: #333333;">Need a buddy?</h2>
-         <p>See who's checking out this area!</p>
+         <p>To see who's checking out this area, sign up!</p>
           <% @users.each_with_index do |user, index| %>
           <tr>
             <td><%= index +=1 %></td>
             <td><%= user.email %></td>
             <td>
               <%= link_to "Open chat", "#", class: "btn btn-success btn-xs start-conversation",
-                          "data-sid" => current_user.id, "data-rip" => user.id %>
+                          "data-sid" => current_user.id, "data-rip" => user.id if current_user %>
             </td>
           </tr>
           <% end %>

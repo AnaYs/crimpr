@@ -35,7 +35,7 @@ class AreasController < ApplicationController
   end
 
   def show
-    @users = User.all.where.not(id: current_user.id)
+    @users = current_user ? User.all.where.not(id: current_user.id) : User.all
 
     flash[:alert] = nil
     @weather = current_weather(@area)
